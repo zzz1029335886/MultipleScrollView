@@ -87,16 +87,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
 
 extension ViewController: ZZTwoMultipleScrollViewDelegte{
     func twoMultipleScrollViewRefreshFooter(_ multipleScrollView: ZZTwoMultipleScrollView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.count += 20
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.count += 30
             self.footerTableView.reloadData()
             multipleScrollView.endRefreshFooter()
         }
     }
     
     func twoMultipleScrollViewRefreshHeader(_ multipleScrollView: ZZTwoMultipleScrollView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.count = 20
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.count = 30
             self.footerTableView.reloadData()
             multipleScrollView.endRefreshHeader()
         }

@@ -412,10 +412,17 @@ typedef struct _IsBounceTopPadding {
 }
 
 - (void)scrollTop{
-    [self performBounceForScrollView:self.mainTableView isAtTop:YES];
+    if (self.bounceBehavior) {
+        [self.dynamicAnimator removeBehavior:self.bounceBehavior];
+    }
+    
+    [self.mainTableView scrollToTopWithAnimated:YES];
 }
 
 - (void)scrollBottom{
+    if (self.bounceBehavior) {
+        [self.dynamicAnimator removeBehavior:self.bounceBehavior];
+    }
     [self bounceForScrollView:self.mainTableView isAtTop:NO padding:0];
 }
 
