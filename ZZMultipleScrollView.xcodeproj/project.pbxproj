@@ -1,0 +1,712 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1755E9D549D323FA7A47AD26 /* Pods_ZZMultipleScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80887EC08966E33D3D1CF1F /* Pods_ZZMultipleScrollView.framework */; };
+		D4BE523326383F0500D8D0BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE523226383F0500D8D0BC /* AppDelegate.swift */; };
+		D4BE523726383F0500D8D0BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE523626383F0500D8D0BC /* ViewController.swift */; };
+		D4BE523A26383F0500D8D0BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BE523826383F0500D8D0BC /* Main.storyboard */; };
+		D4BE523C26383F0700D8D0BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4BE523B26383F0700D8D0BC /* Assets.xcassets */; };
+		D4BE523F26383F0700D8D0BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BE523D26383F0700D8D0BC /* LaunchScreen.storyboard */; };
+		D4BE524A26383F0800D8D0BC /* ZZMultipleScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE524926383F0800D8D0BC /* ZZMultipleScrollViewTests.swift */; };
+		D4BE525526383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE525426383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift */; };
+		D4BE527026383F6B00D8D0BC /* ZZMultipleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526B26383F6A00D8D0BC /* ZZMultipleScrollView.m */; };
+		D4BE527126383F6B00D8D0BC /* tableview_pull_refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */; };
+		D4BE527226383F6B00D8D0BC /* tableview_pull_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */; };
+		D4BE527326383F6B00D8D0BC /* ZZRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */; };
+		D4BE527426383F6B00D8D0BC /* ZZTwoScrollTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526F26383F6A00D8D0BC /* ZZTwoScrollTableView.swift */; };
+		D4BE52882638407300D8D0BC /* ZZDynamicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE52862638407200D8D0BC /* ZZDynamicItem.m */; };
+		D4BE528E2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE528C2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D4BE524626383F0800D8D0BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4BE522726383F0500D8D0BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4BE522E26383F0500D8D0BC;
+			remoteInfo = ZZMultipleScrollView;
+		};
+		D4BE525126383F0800D8D0BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4BE522726383F0500D8D0BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4BE522E26383F0500D8D0BC;
+			remoteInfo = ZZMultipleScrollView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AD02142771CF1603A16A6A00 /* Pods-ZZMultipleScrollView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZMultipleScrollView.debug.xcconfig"; path = "Target Support Files/Pods-ZZMultipleScrollView/Pods-ZZMultipleScrollView.debug.xcconfig"; sourceTree = "<group>"; };
+		D4BE522F26383F0500D8D0BC /* ZZMultipleScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZMultipleScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4BE523226383F0500D8D0BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D4BE523626383F0500D8D0BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D4BE523926383F0500D8D0BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4BE523B26383F0700D8D0BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4BE523E26383F0700D8D0BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4BE524026383F0700D8D0BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4BE524526383F0800D8D0BC /* ZZMultipleScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZMultipleScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4BE524926383F0800D8D0BC /* ZZMultipleScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZMultipleScrollViewTests.swift; sourceTree = "<group>"; };
+		D4BE524B26383F0800D8D0BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4BE525026383F0800D8D0BC /* ZZMultipleScrollViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZZMultipleScrollViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4BE525426383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZMultipleScrollViewUITests.swift; sourceTree = "<group>"; };
+		D4BE525626383F0800D8D0BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4BE526926383F6900D8D0BC /* ZZMultipleScrollView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZZMultipleScrollView-Bridging-Header.h"; sourceTree = "<group>"; };
+		D4BE526A26383F6A00D8D0BC /* ZZMultipleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZMultipleScrollView.h; sourceTree = "<group>"; };
+		D4BE526B26383F6A00D8D0BC /* ZZMultipleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZMultipleScrollView.m; sourceTree = "<group>"; };
+		D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview_pull_refresh@3x.png"; sourceTree = "<group>"; };
+		D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview_pull_refresh@2x.png"; sourceTree = "<group>"; };
+		D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZRefreshControl.swift; sourceTree = "<group>"; };
+		D4BE526F26383F6A00D8D0BC /* ZZTwoScrollTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZTwoScrollTableView.swift; sourceTree = "<group>"; };
+		D4BE52862638407200D8D0BC /* ZZDynamicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZDynamicItem.m; sourceTree = "<group>"; };
+		D4BE52872638407300D8D0BC /* ZZDynamicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZDynamicItem.h; sourceTree = "<group>"; };
+		D4BE528C2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ZZMultipleScrollView.m"; sourceTree = "<group>"; };
+		D4BE528D2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ZZMultipleScrollView.h"; sourceTree = "<group>"; };
+		DDCF146698874E5DE772A213 /* Pods-ZZMultipleScrollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZMultipleScrollView.release.xcconfig"; path = "Target Support Files/Pods-ZZMultipleScrollView/Pods-ZZMultipleScrollView.release.xcconfig"; sourceTree = "<group>"; };
+		E80887EC08966E33D3D1CF1F /* Pods_ZZMultipleScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZZMultipleScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4BE522C26383F0500D8D0BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1755E9D549D323FA7A47AD26 /* Pods_ZZMultipleScrollView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BE524226383F0800D8D0BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BE524D26383F0800D8D0BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23187F75DD2E52833A93251D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD02142771CF1603A16A6A00 /* Pods-ZZMultipleScrollView.debug.xcconfig */,
+				DDCF146698874E5DE772A213 /* Pods-ZZMultipleScrollView.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8982A7A65FE1B736DD607FDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E80887EC08966E33D3D1CF1F /* Pods_ZZMultipleScrollView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4BE522626383F0500D8D0BC = {
+			isa = PBXGroup;
+			children = (
+				D4BE523126383F0500D8D0BC /* ZZMultipleScrollView */,
+				D4BE524826383F0800D8D0BC /* ZZMultipleScrollViewTests */,
+				D4BE525326383F0800D8D0BC /* ZZMultipleScrollViewUITests */,
+				D4BE523026383F0500D8D0BC /* Products */,
+				23187F75DD2E52833A93251D /* Pods */,
+				8982A7A65FE1B736DD607FDC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D4BE523026383F0500D8D0BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE522F26383F0500D8D0BC /* ZZMultipleScrollView.app */,
+				D4BE524526383F0800D8D0BC /* ZZMultipleScrollViewTests.xctest */,
+				D4BE525026383F0800D8D0BC /* ZZMultipleScrollViewUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4BE523126383F0500D8D0BC /* ZZMultipleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE526926383F6900D8D0BC /* ZZMultipleScrollView-Bridging-Header.h */,
+				D4BE526826383F4300D8D0BC /* MultipleScrollView */,
+				D4BE523226383F0500D8D0BC /* AppDelegate.swift */,
+				D4BE523626383F0500D8D0BC /* ViewController.swift */,
+				D4BE523826383F0500D8D0BC /* Main.storyboard */,
+				D4BE523B26383F0700D8D0BC /* Assets.xcassets */,
+				D4BE523D26383F0700D8D0BC /* LaunchScreen.storyboard */,
+				D4BE524026383F0700D8D0BC /* Info.plist */,
+			);
+			path = ZZMultipleScrollView;
+			sourceTree = "<group>";
+		};
+		D4BE524826383F0800D8D0BC /* ZZMultipleScrollViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE524926383F0800D8D0BC /* ZZMultipleScrollViewTests.swift */,
+				D4BE524B26383F0800D8D0BC /* Info.plist */,
+			);
+			path = ZZMultipleScrollViewTests;
+			sourceTree = "<group>";
+		};
+		D4BE525326383F0800D8D0BC /* ZZMultipleScrollViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE525426383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift */,
+				D4BE525626383F0800D8D0BC /* Info.plist */,
+			);
+			path = ZZMultipleScrollViewUITests;
+			sourceTree = "<group>";
+		};
+		D4BE526826383F4300D8D0BC /* MultipleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */,
+				D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */,
+				D4BE528D2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.h */,
+				D4BE528C2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m */,
+				D4BE52872638407300D8D0BC /* ZZDynamicItem.h */,
+				D4BE52862638407200D8D0BC /* ZZDynamicItem.m */,
+				D4BE526A26383F6A00D8D0BC /* ZZMultipleScrollView.h */,
+				D4BE526B26383F6A00D8D0BC /* ZZMultipleScrollView.m */,
+				D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */,
+				D4BE526F26383F6A00D8D0BC /* ZZTwoScrollTableView.swift */,
+			);
+			path = MultipleScrollView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D4BE522E26383F0500D8D0BC /* ZZMultipleScrollView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4BE525926383F0800D8D0BC /* Build configuration list for PBXNativeTarget "ZZMultipleScrollView" */;
+			buildPhases = (
+				D4A2F4665C2CC62E0B694337 /* [CP] Check Pods Manifest.lock */,
+				D4BE522B26383F0500D8D0BC /* Sources */,
+				D4BE522C26383F0500D8D0BC /* Frameworks */,
+				D4BE522D26383F0500D8D0BC /* Resources */,
+				9AF5D2DE88976579FF0B93E2 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZZMultipleScrollView;
+			productName = ZZMultipleScrollView;
+			productReference = D4BE522F26383F0500D8D0BC /* ZZMultipleScrollView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4BE524426383F0800D8D0BC /* ZZMultipleScrollViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4BE525C26383F0800D8D0BC /* Build configuration list for PBXNativeTarget "ZZMultipleScrollViewTests" */;
+			buildPhases = (
+				D4BE524126383F0800D8D0BC /* Sources */,
+				D4BE524226383F0800D8D0BC /* Frameworks */,
+				D4BE524326383F0800D8D0BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4BE524726383F0800D8D0BC /* PBXTargetDependency */,
+			);
+			name = ZZMultipleScrollViewTests;
+			productName = ZZMultipleScrollViewTests;
+			productReference = D4BE524526383F0800D8D0BC /* ZZMultipleScrollViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D4BE524F26383F0800D8D0BC /* ZZMultipleScrollViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4BE525F26383F0800D8D0BC /* Build configuration list for PBXNativeTarget "ZZMultipleScrollViewUITests" */;
+			buildPhases = (
+				D4BE524C26383F0800D8D0BC /* Sources */,
+				D4BE524D26383F0800D8D0BC /* Frameworks */,
+				D4BE524E26383F0800D8D0BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4BE525226383F0800D8D0BC /* PBXTargetDependency */,
+			);
+			name = ZZMultipleScrollViewUITests;
+			productName = ZZMultipleScrollViewUITests;
+			productReference = D4BE525026383F0800D8D0BC /* ZZMultipleScrollViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4BE522726383F0500D8D0BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					D4BE522E26383F0500D8D0BC = {
+						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1230;
+					};
+					D4BE524426383F0800D8D0BC = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = D4BE522E26383F0500D8D0BC;
+					};
+					D4BE524F26383F0800D8D0BC = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = D4BE522E26383F0500D8D0BC;
+					};
+				};
+			};
+			buildConfigurationList = D4BE522A26383F0500D8D0BC /* Build configuration list for PBXProject "ZZMultipleScrollView" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4BE522626383F0500D8D0BC;
+			productRefGroup = D4BE523026383F0500D8D0BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4BE522E26383F0500D8D0BC /* ZZMultipleScrollView */,
+				D4BE524426383F0800D8D0BC /* ZZMultipleScrollViewTests */,
+				D4BE524F26383F0800D8D0BC /* ZZMultipleScrollViewUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4BE522D26383F0500D8D0BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BE527126383F6B00D8D0BC /* tableview_pull_refresh@3x.png in Resources */,
+				D4BE523F26383F0700D8D0BC /* LaunchScreen.storyboard in Resources */,
+				D4BE523C26383F0700D8D0BC /* Assets.xcassets in Resources */,
+				D4BE523A26383F0500D8D0BC /* Main.storyboard in Resources */,
+				D4BE527226383F6B00D8D0BC /* tableview_pull_refresh@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BE524326383F0800D8D0BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BE524E26383F0800D8D0BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9AF5D2DE88976579FF0B93E2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZZMultipleScrollView/Pods-ZZMultipleScrollView-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZZMultipleScrollView/Pods-ZZMultipleScrollView-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZZMultipleScrollView/Pods-ZZMultipleScrollView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4A2F4665C2CC62E0B694337 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZZMultipleScrollView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4BE522B26383F0500D8D0BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BE527026383F6B00D8D0BC /* ZZMultipleScrollView.m in Sources */,
+				D4BE528E2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m in Sources */,
+				D4BE523726383F0500D8D0BC /* ViewController.swift in Sources */,
+				D4BE527326383F6B00D8D0BC /* ZZRefreshControl.swift in Sources */,
+				D4BE523326383F0500D8D0BC /* AppDelegate.swift in Sources */,
+				D4BE52882638407300D8D0BC /* ZZDynamicItem.m in Sources */,
+				D4BE527426383F6B00D8D0BC /* ZZTwoScrollTableView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BE524126383F0800D8D0BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BE524A26383F0800D8D0BC /* ZZMultipleScrollViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BE524C26383F0800D8D0BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BE525526383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D4BE524726383F0800D8D0BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4BE522E26383F0500D8D0BC /* ZZMultipleScrollView */;
+			targetProxy = D4BE524626383F0800D8D0BC /* PBXContainerItemProxy */;
+		};
+		D4BE525226383F0800D8D0BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4BE522E26383F0500D8D0BC /* ZZMultipleScrollView */;
+			targetProxy = D4BE525126383F0800D8D0BC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D4BE523826383F0500D8D0BC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4BE523926383F0500D8D0BC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D4BE523D26383F0700D8D0BC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4BE523E26383F0700D8D0BC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D4BE525726383F0800D8D0BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D4BE525826383F0800D8D0BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D4BE525A26383F0800D8D0BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD02142771CF1603A16A6A00 /* Pods-ZZMultipleScrollView.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = ZZMultipleScrollView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zerry.ZZMultipleScrollView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZZMultipleScrollView/ZZMultipleScrollView-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D4BE525B26383F0800D8D0BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDCF146698874E5DE772A213 /* Pods-ZZMultipleScrollView.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = ZZMultipleScrollView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zerry.ZZMultipleScrollView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZZMultipleScrollView/ZZMultipleScrollView-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D4BE525D26383F0800D8D0BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ZZMultipleScrollViewTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zerry.ZZMultipleScrollViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZZMultipleScrollView.app/ZZMultipleScrollView";
+			};
+			name = Debug;
+		};
+		D4BE525E26383F0800D8D0BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ZZMultipleScrollViewTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zerry.ZZMultipleScrollViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZZMultipleScrollView.app/ZZMultipleScrollView";
+			};
+			name = Release;
+		};
+		D4BE526026383F0800D8D0BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ZZMultipleScrollViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zerry.ZZMultipleScrollViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ZZMultipleScrollView;
+			};
+			name = Debug;
+		};
+		D4BE526126383F0800D8D0BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ZZMultipleScrollViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zerry.ZZMultipleScrollViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ZZMultipleScrollView;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4BE522A26383F0500D8D0BC /* Build configuration list for PBXProject "ZZMultipleScrollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4BE525726383F0800D8D0BC /* Debug */,
+				D4BE525826383F0800D8D0BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4BE525926383F0800D8D0BC /* Build configuration list for PBXNativeTarget "ZZMultipleScrollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4BE525A26383F0800D8D0BC /* Debug */,
+				D4BE525B26383F0800D8D0BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4BE525C26383F0800D8D0BC /* Build configuration list for PBXNativeTarget "ZZMultipleScrollViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4BE525D26383F0800D8D0BC /* Debug */,
+				D4BE525E26383F0800D8D0BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4BE525F26383F0800D8D0BC /* Build configuration list for PBXNativeTarget "ZZMultipleScrollViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4BE526026383F0800D8D0BC /* Debug */,
+				D4BE526126383F0800D8D0BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4BE522726383F0500D8D0BC /* Project object */;
+}
