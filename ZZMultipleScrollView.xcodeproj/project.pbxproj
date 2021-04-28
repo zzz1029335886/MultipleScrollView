@@ -144,6 +144,8 @@
 				D4BE523226383F0500D8D0BC /* AppDelegate.swift */,
 				D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */,
 				D4BE526F26383F6A00D8D0BC /* ZZTwoScrollTableView.swift */,
+				D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */,
+				D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */,
 				D4BE523626383F0500D8D0BC /* ViewController.swift */,
 				D4BE523826383F0500D8D0BC /* Main.storyboard */,
 				D4BE523B26383F0700D8D0BC /* Assets.xcassets */,
@@ -174,8 +176,6 @@
 		D4BE526826383F4300D8D0BC /* MultipleScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */,
-				D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */,
 				D4BE528D2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.h */,
 				D4BE528C2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m */,
 				D4BE52872638407300D8D0BC /* ZZDynamicItem.h */,
