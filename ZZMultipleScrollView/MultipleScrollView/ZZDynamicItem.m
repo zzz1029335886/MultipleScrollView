@@ -1,9 +1,8 @@
 //
 //  DynamicItem.m
-//  ScrollViewNestDemo
+//  ZZPagingView
 //
-//  Created by XuNing on 2017/11/12.
-//  Copyright © 2017年 xuning. All rights reserved.
+//  Created by zerry on 2021/4/25.
 //
 
 #import "ZZDynamicItem.h"

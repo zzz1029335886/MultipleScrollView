@@ -1,14 +1,14 @@
 //
-//  ZZMultipleScrollView.m
+//  MultipleScrollView.m
 //  ZZPagingView
 //
 //  Created by zerry on 2021/4/25.
 //
 
-#import "ZZMultipleScrollView.h"
+#import "MultipleScrollView.h"
 #import "ZZDynamicItem.h"
 #import <WebKit/WebKit.h>
-#import "UIScrollView+ZZMultipleScrollView.h"
+#import "UIScrollView+MultipleScrollView.h"
 
 typedef struct _IsBounceTopPadding {
     BOOL isBounce;
@@ -16,7 +16,7 @@ typedef struct _IsBounceTopPadding {
     CGFloat padding;
 }IsBounceTopPadding;
 
-@interface ZZMultipleScrollView() <UIGestureRecognizerDelegate, UIDynamicAnimatorDelegate, UITableViewDelegate, UITableViewDataSource>{
+@interface MultipleScrollView() <UIGestureRecognizerDelegate, UIDynamicAnimatorDelegate, UITableViewDelegate, UITableViewDataSource>{
     CGFloat HEIGHT;
     CGFloat WIDTH;
 }
@@ -43,7 +43,7 @@ typedef struct _IsBounceTopPadding {
 
 @end
 
-@implementation ZZMultipleScrollView
+@implementation MultipleScrollView
 
 #pragma mark - Getters
 - (UIPanGestureRecognizer *)panRecognizer {
@@ -217,7 +217,7 @@ typedef struct _IsBounceTopPadding {
     return YES;
 }
 
-- (void)setDataSource:(id<ZZMultipleScrollViewDataSource>)dataSource{
+- (void)setDataSource:(id<MultipleScrollViewDataSource>)dataSource{
     _dataSource = dataSource;
  
     _allView = nil;

@@ -1,14 +1,13 @@
 //
-//  UIScrollView+ZZMultipleScrollView.m
-//  ScrollViewNestDemo
+//  UIScrollView+MultipleScrollView.m
+//  ZZPagingView
 //
-//  Created by XuNing on 2017/11/12.
-//  Copyright © 2017年 xuning. All rights reserved.
+//  Created by zerry on 2021/4/25.
 //
 
-#import "UIScrollView+ZZMultipleScrollView.h"
+#import "UIScrollView+MultipleScrollView.h"
 
-@implementation UIScrollView (Demo)
+@implementation UIScrollView (MultipleScrollView)
 
 - (CGFloat)maxContentOffsetY {
     return MAX(0, self.contentSize.height - self.frame.size.height);

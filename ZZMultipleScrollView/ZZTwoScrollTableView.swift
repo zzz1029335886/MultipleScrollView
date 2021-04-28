@@ -32,7 +32,7 @@ extension ZZTwoMultipleScrollViewDelegte{
     func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, sectionViewWillShow sectionView: UIView){}
 }
 
-class ZZTwoMultipleScrollView: ZZMultipleScrollView {
+class ZZTwoMultipleScrollView: MultipleScrollView {
     var footerNormalText = "上拉加载更多"
     var footerPullText = "松开加载更多"
     var footerRefreshingText = "加载更多..."
@@ -134,16 +134,16 @@ class ZZTwoMultipleScrollView: ZZMultipleScrollView {
     }
 }
 
-extension ZZTwoMultipleScrollView: ZZMultipleScrollViewDelegate, ZZMultipleScrollViewDataSource{
-    func numberOfScrollSections(in multipleScrollView: ZZMultipleScrollView) -> Int {
+extension ZZTwoMultipleScrollView: MultipleScrollViewDelegate, MultipleScrollViewDataSource{
+    func numberOfScrollSections(in multipleScrollView: MultipleScrollView) -> Int {
         return 2
     }
     
-    func multipleScrollView(_ multipleScrollView: ZZMultipleScrollView, numberOfRowsInSection section: Int) -> Int {
+    func multipleScrollView(_ multipleScrollView: MultipleScrollView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func multipleScrollView(_ multipleScrollView: ZZMultipleScrollView, viewForRowAt indexPath: IndexPath) -> UIView {
+    func multipleScrollView(_ multipleScrollView: MultipleScrollView, viewForRowAt indexPath: IndexPath) -> UIView {
         if indexPath.section == 0 {
             return self.headerView
         }else{
@@ -151,7 +151,7 @@ extension ZZTwoMultipleScrollView: ZZMultipleScrollViewDelegate, ZZMultipleScrol
         }
     }
     
-    func multipleScrollView(_ multipleScrollView: ZZMultipleScrollView, viewForHeaderInSection section: Int) -> UIView? {
+    func multipleScrollView(_ multipleScrollView: MultipleScrollView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             return self.sectionView
         }
@@ -198,7 +198,7 @@ extension ZZTwoMultipleScrollView: ZZMultipleScrollViewDelegate, ZZMultipleScrol
         }
     }
     
-    func multipleScrollView(_ multipleScrollView: ZZMultipleScrollView, willScrollToBottomIn view: UIView, forRowAt indexPath: IndexPath) {
+    func multipleScrollView(_ multipleScrollView: MultipleScrollView, willScrollToBottomIn view: UIView, forRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             self.kDelegate?.twoMultipleScrollView(self, footerViewScrollToBottom: view)
         }else if indexPath.section == 0{
@@ -206,7 +206,7 @@ extension ZZTwoMultipleScrollView: ZZMultipleScrollViewDelegate, ZZMultipleScrol
         }
     }
     
-    func multipleScrollView(_ multipleScrollView: ZZMultipleScrollView, scrollToLastBottom tableView: UITableView) -> CGFloat{
+    func multipleScrollView(_ multipleScrollView: MultipleScrollView, scrollToLastBottom tableView: UITableView) -> CGFloat{
         if hasRefresFooter {
             if footerRefreshControl.controlType == .pull {
                 footerRefreshControl.controlType = .refreshing
@@ -217,7 +217,7 @@ extension ZZTwoMultipleScrollView: ZZMultipleScrollViewDelegate, ZZMultipleScrol
         return -1
     }
     
-    func multipleScrollView(_ multipleScrollView: ZZMultipleScrollView, scrollToTop tableView: UITableView) -> CGFloat{
+    func multipleScrollView(_ multipleScrollView: MultipleScrollView, scrollToTop tableView: UITableView) -> CGFloat{
         if hasRefreshHeader {
             if headerRefreshControl.controlType == .pull {
                 headerRefreshControl.controlType = .refreshing
@@ -229,13 +229,13 @@ extension ZZTwoMultipleScrollView: ZZMultipleScrollViewDelegate, ZZMultipleScrol
         return -1
     }
     
-    func multipleScrollView(_ multipleScrollView: ZZMultipleScrollView, willDisplay view: UIView, forRowAt indexPath: IndexPath) {
+    func multipleScrollView(_ multipleScrollView: MultipleScrollView, willDisplay view: UIView, forRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             self.kDelegate?.twoMultipleScrollView(self, footerViewWillShow: view)
         }
     }
     
-    func multipleScrollView(_ multipleScrollView: ZZMultipleScrollView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    func multipleScrollView(_ multipleScrollView: MultipleScrollView, willDisplayHeaderView view: UIView, forSection section: Int) {
         self.kDelegate?.twoMultipleScrollView(self, sectionViewWillShow: view)
     }
     

@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  ZZMultipleScrollView
+//  MultipleScrollView
 //
 //  Created by zerry on 2021/4/27.
 //

@@ -15,13 +15,13 @@
 		D4BE523F26383F0700D8D0BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BE523D26383F0700D8D0BC /* LaunchScreen.storyboard */; };
 		D4BE524A26383F0800D8D0BC /* ZZMultipleScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE524926383F0800D8D0BC /* ZZMultipleScrollViewTests.swift */; };
 		D4BE525526383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE525426383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift */; };
-		D4BE527026383F6B00D8D0BC /* ZZMultipleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526B26383F6A00D8D0BC /* ZZMultipleScrollView.m */; };
+		D4BE527026383F6B00D8D0BC /* MultipleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526B26383F6A00D8D0BC /* MultipleScrollView.m */; };
 		D4BE527126383F6B00D8D0BC /* tableview_pull_refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */; };
 		D4BE527226383F6B00D8D0BC /* tableview_pull_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */; };
 		D4BE527326383F6B00D8D0BC /* ZZRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */; };
 		D4BE527426383F6B00D8D0BC /* ZZTwoScrollTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526F26383F6A00D8D0BC /* ZZTwoScrollTableView.swift */; };
 		D4BE52882638407300D8D0BC /* ZZDynamicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE52862638407200D8D0BC /* ZZDynamicItem.m */; };
-		D4BE528E2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE528C2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m */; };
+		D4BE528E2638408100D8D0BC /* UIScrollView+MultipleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE528C2638408100D8D0BC /* UIScrollView+MultipleScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,16 +57,16 @@
 		D4BE525426383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZZMultipleScrollViewUITests.swift; sourceTree = "<group>"; };
 		D4BE525626383F0800D8D0BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4BE526926383F6900D8D0BC /* ZZMultipleScrollView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZZMultipleScrollView-Bridging-Header.h"; sourceTree = "<group>"; };
-		D4BE526A26383F6A00D8D0BC /* ZZMultipleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZMultipleScrollView.h; sourceTree = "<group>"; };
-		D4BE526B26383F6A00D8D0BC /* ZZMultipleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZMultipleScrollView.m; sourceTree = "<group>"; };
+		D4BE526A26383F6A00D8D0BC /* MultipleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleScrollView.h; sourceTree = "<group>"; };
+		D4BE526B26383F6A00D8D0BC /* MultipleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleScrollView.m; sourceTree = "<group>"; };
 		D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview_pull_refresh@3x.png"; sourceTree = "<group>"; };
 		D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview_pull_refresh@2x.png"; sourceTree = "<group>"; };
 		D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZRefreshControl.swift; sourceTree = "<group>"; };
 		D4BE526F26383F6A00D8D0BC /* ZZTwoScrollTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZTwoScrollTableView.swift; sourceTree = "<group>"; };
 		D4BE52862638407200D8D0BC /* ZZDynamicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZDynamicItem.m; sourceTree = "<group>"; };
 		D4BE52872638407300D8D0BC /* ZZDynamicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZDynamicItem.h; sourceTree = "<group>"; };
-		D4BE528C2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ZZMultipleScrollView.m"; sourceTree = "<group>"; };
-		D4BE528D2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ZZMultipleScrollView.h"; sourceTree = "<group>"; };
+		D4BE528C2638408100D8D0BC /* UIScrollView+MultipleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MultipleScrollView.m"; sourceTree = "<group>"; };
+		D4BE528D2638408100D8D0BC /* UIScrollView+MultipleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MultipleScrollView.h"; sourceTree = "<group>"; };
 		DDCF146698874E5DE772A213 /* Pods-ZZMultipleScrollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZMultipleScrollView.release.xcconfig"; path = "Target Support Files/Pods-ZZMultipleScrollView/Pods-ZZMultipleScrollView.release.xcconfig"; sourceTree = "<group>"; };
 		E80887EC08966E33D3D1CF1F /* Pods_ZZMultipleScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZZMultipleScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -176,12 +176,12 @@
 		D4BE526826383F4300D8D0BC /* MultipleScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				D4BE528D2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.h */,
-				D4BE528C2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m */,
+				D4BE528D2638408100D8D0BC /* UIScrollView+MultipleScrollView.h */,
+				D4BE528C2638408100D8D0BC /* UIScrollView+MultipleScrollView.m */,
 				D4BE52872638407300D8D0BC /* ZZDynamicItem.h */,
 				D4BE52862638407200D8D0BC /* ZZDynamicItem.m */,
-				D4BE526A26383F6A00D8D0BC /* ZZMultipleScrollView.h */,
-				D4BE526B26383F6A00D8D0BC /* ZZMultipleScrollView.m */,
+				D4BE526A26383F6A00D8D0BC /* MultipleScrollView.h */,
+				D4BE526B26383F6A00D8D0BC /* MultipleScrollView.m */,
 			);
 			path = MultipleScrollView;
 			sourceTree = "<group>";
@@ -363,8 +363,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4BE527026383F6B00D8D0BC /* ZZMultipleScrollView.m in Sources */,
-				D4BE528E2638408100D8D0BC /* UIScrollView+ZZMultipleScrollView.m in Sources */,
+				D4BE527026383F6B00D8D0BC /* MultipleScrollView.m in Sources */,
+				D4BE528E2638408100D8D0BC /* UIScrollView+MultipleScrollView.m in Sources */,
 				D4BE523726383F0500D8D0BC /* ViewController.swift in Sources */,
 				D4BE527326383F6B00D8D0BC /* ZZRefreshControl.swift in Sources */,
 				D4BE523326383F0500D8D0BC /* AppDelegate.swift in Sources */,
