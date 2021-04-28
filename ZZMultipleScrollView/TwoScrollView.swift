@@ -1,6 +1,6 @@
 //
-//  ZZTwoMultipleScrollView.swift
-//  ZZPagingView
+//  TwoScrollView.swift
+//
 //
 //  Created by zerry on 2021/4/25.
 //
@@ -8,31 +8,31 @@
 import UIKit
 import SnapKit
 
-protocol ZZTwoMultipleScrollViewDelegte: class{
-    func twoMultipleScrollViewDidScroll(_ scrollView: UIScrollView)
-    func twoMultipleScrollViewScrollTop(_ multipleScrollView: ZZTwoMultipleScrollView)
-    func twoMultipleScrollViewRefreshHeader(_ multipleScrollView: ZZTwoMultipleScrollView)
-    func twoMultipleScrollViewRefreshFooter(_ multipleScrollView: ZZTwoMultipleScrollView)
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, scrollIn footerView: UIView)
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, footerViewScrollToBottom footerView: UIView)
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, headerViewScrollToBottom headerView: UIView)
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, footerViewWillShow footerView: UIView)
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, sectionViewWillShow sectionView: UIView)
+protocol TwoScrollViewDelegte: class{
+    func twoScrollViewDidScroll(_ scrollView: UIScrollView)
+    func twoScrollViewScrollTop(_ multipleScrollView: TwoScrollView)
+    func twoScrollViewRefreshHeader(_ multipleScrollView: TwoScrollView)
+    func twoScrollViewRefreshFooter(_ multipleScrollView: TwoScrollView)
+    func twoScrollView(_ multipleScrollView: TwoScrollView, scrollIn footerView: UIView)
+    func twoScrollView(_ multipleScrollView: TwoScrollView, footerViewScrollToBottom footerView: UIView)
+    func twoScrollView(_ multipleScrollView: TwoScrollView, headerViewScrollToBottom headerView: UIView)
+    func twoScrollView(_ multipleScrollView: TwoScrollView, footerViewWillShow footerView: UIView)
+    func twoScrollView(_ multipleScrollView: TwoScrollView, sectionViewWillShow sectionView: UIView)
 }
 
-extension ZZTwoMultipleScrollViewDelegte{
-    func twoMultipleScrollViewDidScroll(_ scrollView: UIScrollView){}
-    func twoMultipleScrollViewScrollTop(_ multipleScrollView: ZZTwoMultipleScrollView){}
-    func twoMultipleScrollViewRefreshHeader(_ multipleScrollView: ZZTwoMultipleScrollView){}
-    func twoMultipleScrollViewRefreshFooter(_ multipleScrollView: ZZTwoMultipleScrollView){}
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, scrollIn footerView: UIView){}
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, footerViewScrollToBottom footerView: UIView){}
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, headerViewScrollToBottom headerView: UIView){}
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, footerViewWillShow footerView: UIView){}
-    func twoMultipleScrollView(_ multipleScrollView: ZZTwoMultipleScrollView, sectionViewWillShow sectionView: UIView){}
+extension TwoScrollViewDelegte{
+    func twoScrollViewDidScroll(_ scrollView: UIScrollView){}
+    func twoScrollViewScrollTop(_ multipleScrollView: TwoScrollView){}
+    func twoScrollViewRefreshHeader(_ multipleScrollView: TwoScrollView){}
+    func twoScrollViewRefreshFooter(_ multipleScrollView: TwoScrollView){}
+    func twoScrollView(_ multipleScrollView: TwoScrollView, scrollIn footerView: UIView){}
+    func twoScrollView(_ multipleScrollView: TwoScrollView, footerViewScrollToBottom footerView: UIView){}
+    func twoScrollView(_ multipleScrollView: TwoScrollView, headerViewScrollToBottom headerView: UIView){}
+    func twoScrollView(_ multipleScrollView: TwoScrollView, footerViewWillShow footerView: UIView){}
+    func twoScrollView(_ multipleScrollView: TwoScrollView, sectionViewWillShow sectionView: UIView){}
 }
 
-class ZZTwoMultipleScrollView: MultipleScrollView {
+class TwoScrollView: MultipleScrollView {
     var footerNormalText = "上拉加载更多"
     var footerPullText = "松开加载更多"
     var footerRefreshingText = "加载更多..."
@@ -44,7 +44,7 @@ class ZZTwoMultipleScrollView: MultipleScrollView {
     var sectionView: UIView?
     var headerView: UIView!
     var footerView: UIView!
-    weak var kDelegate: ZZTwoMultipleScrollViewDelegte?
+    weak var kDelegate: TwoScrollViewDelegte?
     var hasRefreshHeader = false{
         didSet{
             if hasRefreshHeader {
@@ -134,7 +134,7 @@ class ZZTwoMultipleScrollView: MultipleScrollView {
     }
 }
 
-extension ZZTwoMultipleScrollView: MultipleScrollViewDelegate, MultipleScrollViewDataSource{
+extension TwoScrollView: MultipleScrollViewDelegate, MultipleScrollViewDataSource{
     func numberOfScrollSections(in multipleScrollView: MultipleScrollView) -> Int {
         return 2
     }
@@ -159,7 +159,7 @@ extension ZZTwoMultipleScrollView: MultipleScrollViewDelegate, MultipleScrollVie
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.kDelegate?.twoMultipleScrollViewDidScroll(scrollView)
+        self.kDelegate?.twoScrollViewDidScroll(scrollView)
         
         if hasRefreshHeader {
             let padding : CGFloat = scrollView.contentOffset.y
@@ -200,9 +200,9 @@ extension ZZTwoMultipleScrollView: MultipleScrollViewDelegate, MultipleScrollVie
     
     func multipleScrollView(_ multipleScrollView: MultipleScrollView, willScrollToBottomIn view: UIView, forRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            self.kDelegate?.twoMultipleScrollView(self, footerViewScrollToBottom: view)
+            self.kDelegate?.twoScrollView(self, footerViewScrollToBottom: view)
         }else if indexPath.section == 0{
-            self.kDelegate?.twoMultipleScrollView(self, headerViewScrollToBottom: view)
+            self.kDelegate?.twoScrollView(self, headerViewScrollToBottom: view)
         }
     }
     
@@ -210,7 +210,7 @@ extension ZZTwoMultipleScrollView: MultipleScrollViewDelegate, MultipleScrollVie
         if hasRefresFooter {
             if footerRefreshControl.controlType == .pull {
                 footerRefreshControl.controlType = .refreshing
-                self.kDelegate?.twoMultipleScrollViewRefreshFooter(self)
+                self.kDelegate?.twoScrollViewRefreshFooter(self)
                 return footerPadding
             }
         }
@@ -221,22 +221,22 @@ extension ZZTwoMultipleScrollView: MultipleScrollViewDelegate, MultipleScrollVie
         if hasRefreshHeader {
             if headerRefreshControl.controlType == .pull {
                 headerRefreshControl.controlType = .refreshing
-                self.kDelegate?.twoMultipleScrollViewRefreshHeader(self)
+                self.kDelegate?.twoScrollViewRefreshHeader(self)
                 return headerPadding
             }
         }
-        self.kDelegate?.twoMultipleScrollViewScrollTop(self)
+        self.kDelegate?.twoScrollViewScrollTop(self)
         return -1
     }
     
     func multipleScrollView(_ multipleScrollView: MultipleScrollView, willDisplay view: UIView, forRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            self.kDelegate?.twoMultipleScrollView(self, footerViewWillShow: view)
+            self.kDelegate?.twoScrollView(self, footerViewWillShow: view)
         }
     }
     
     func multipleScrollView(_ multipleScrollView: MultipleScrollView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        self.kDelegate?.twoMultipleScrollView(self, sectionViewWillShow: view)
+        self.kDelegate?.twoScrollView(self, sectionViewWillShow: view)
     }
     
     

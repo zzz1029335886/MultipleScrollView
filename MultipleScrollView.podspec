@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
                    DESC
   spec.homepage     = "https://github.com/zzz1029335886/MultipleScrollView"
   spec.license      = "MIT"
-  spec.author             = { "张泽中" => "16664476+zzz1029335886@users.noreply.github.com" }
+  spec.author             = { "zerry" => "16664476+zzz1029335886@users.noreply.github.com" }
   spec.platform     = :ios, '8.0'
   spec.source       = { :git => "https://github.com/zzz1029335886/MultipleScrollView.git", :tag => "#{spec.version}" }
   spec.source_files  = "Classes", "ZZMultipleScrollView/MultipleScrollView/**/*.{h,m}"

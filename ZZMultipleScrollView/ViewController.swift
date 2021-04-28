@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "TwoScrollView"
+        
         let width = self.view.frame.width
         let height = self.view.frame.height
 
@@ -24,16 +27,6 @@ class ViewController: UIViewController {
         label1.snp.makeConstraints { (m) in
             m.left.right.top.bottom.equalToSuperview()
             m.height.equalTo(100).priority(.high)
-        }
-        
-        let headerLabelView = UIView.init()
-        headerLabelView.backgroundColor = .darkGray
-        let label = UILabel()
-        label.text = "123"
-        headerLabelView.addSubview(label)
-        label.snp.makeConstraints { (m) in
-            m.left.right.top.bottom.equalToSuperview()
-            m.height.equalTo(200).priority(.high)
         }
         
         let contentView = UITableView.init(frame: .init(x: 0, y: 0, width: width, height: height))
@@ -52,7 +45,7 @@ class ViewController: UIViewController {
         let footerLabel = UILabel(frame: .init(x: 0, y: 0, width: width, height: 200))
         footerLabel.text = "123"
         
-        let view = ZZTwoMultipleScrollView.init(frame: self.view.bounds,
+        let view = TwoScrollView.init(frame: self.view.bounds,
                                              sectionView: sectionView,
                                              headerView: headerView,
                                              footerView: contentView)
@@ -65,6 +58,13 @@ class ViewController: UIViewController {
             m.bottom.trailing.leading.equalToSuperview()
             m.top.equalToSuperview().offset(88)
         }
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "More", style: .done, target: self, action: #selector(more))
+    }
+    
+    @objc
+    func more() {
+        self.navigationController?.pushViewController(MoreViewController(), animated: true)
     }
     
     
@@ -87,8 +87,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
 }
 
-extension ViewController: ZZTwoMultipleScrollViewDelegte{
-    func twoMultipleScrollViewRefreshFooter(_ multipleScrollView: ZZTwoMultipleScrollView) {
+extension ViewController: TwoScrollViewDelegte{
+    func twoScrollViewRefreshFooter(_ multipleScrollView: TwoScrollView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.count += 30
             self.footerTableView.reloadData()
@@ -96,7 +96,7 @@ extension ViewController: ZZTwoMultipleScrollViewDelegte{
         }
     }
     
-    func twoMultipleScrollViewRefreshHeader(_ multipleScrollView: ZZTwoMultipleScrollView) {
+    func twoScrollViewRefreshHeader(_ multipleScrollView: TwoScrollView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.count = 30
             self.footerTableView.reloadData()
