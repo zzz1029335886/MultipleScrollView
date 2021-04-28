@@ -39,6 +39,7 @@ class ViewController: UIViewController {
         let contentView = UITableView.init(frame: .init(x: 0, y: 0, width: width, height: height))
         contentView.backgroundColor = .gray
         contentView.delegate = self
+        contentView.tag = 1
         contentView.dataSource = self
         self.footerTableView = contentView
         
@@ -46,13 +47,14 @@ class ViewController: UIViewController {
         headerView.backgroundColor = .gray
         headerView.delegate = self
         headerView.dataSource = self
+        headerView.tag = 1
                 
         let footerLabel = UILabel(frame: .init(x: 0, y: 0, width: width, height: 200))
         footerLabel.text = "123"
         
         let view = ZZTwoMultipleScrollView.init(frame: self.view.bounds,
                                              sectionView: sectionView,
-                                             headerView: headerLabelView,
+                                             headerView: headerView,
                                              footerView: contentView)
         view.hasRefresFooter = true
         view.hasRefreshHeader = true
@@ -79,7 +81,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             cell = UITableViewCell.init(style: .default, reuseIdentifier: "1234")
         }
         
-        cell?.textLabel?.text = "\(indexPath.row)"
+        cell?.textLabel?.text = "\(tableView.tag): \(indexPath.section)\(indexPath.row)"
         return cell!
     }
     
@@ -87,7 +89,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
 
 extension ViewController: ZZTwoMultipleScrollViewDelegte{
     func twoMultipleScrollViewRefreshFooter(_ multipleScrollView: ZZTwoMultipleScrollView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.count += 30
             self.footerTableView.reloadData()
             multipleScrollView.endRefreshFooter()
@@ -95,7 +97,7 @@ extension ViewController: ZZTwoMultipleScrollViewDelegte{
     }
     
     func twoMultipleScrollViewRefreshHeader(_ multipleScrollView: ZZTwoMultipleScrollView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.count = 30
             self.footerTableView.reloadData()
             multipleScrollView.endRefreshHeader()

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1755E9D549D323FA7A47AD26 /* Pods_ZZMultipleScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80887EC08966E33D3D1CF1F /* Pods_ZZMultipleScrollView.framework */; };
+		D4B42B53263909A900446B17 /* kcxvw-be0wv.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4B42B52263909A900446B17 /* kcxvw-be0wv.gif */; };
 		D4BE523326383F0500D8D0BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE523226383F0500D8D0BC /* AppDelegate.swift */; };
 		D4BE523726383F0500D8D0BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE523626383F0500D8D0BC /* ViewController.swift */; };
 		D4BE523A26383F0500D8D0BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BE523826383F0500D8D0BC /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		AD02142771CF1603A16A6A00 /* Pods-ZZMultipleScrollView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZMultipleScrollView.debug.xcconfig"; path = "Target Support Files/Pods-ZZMultipleScrollView/Pods-ZZMultipleScrollView.debug.xcconfig"; sourceTree = "<group>"; };
+		D4B42B52263909A900446B17 /* kcxvw-be0wv.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "kcxvw-be0wv.gif"; sourceTree = "<group>"; };
 		D4BE522F26383F0500D8D0BC /* ZZMultipleScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZMultipleScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BE523226383F0500D8D0BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4BE523626383F0500D8D0BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */,
 				D4BE523626383F0500D8D0BC /* ViewController.swift */,
 				D4BE523826383F0500D8D0BC /* Main.storyboard */,
+				D4B42B52263909A900446B17 /* kcxvw-be0wv.gif */,
 				D4BE523B26383F0700D8D0BC /* Assets.xcassets */,
 				D4BE523D26383F0700D8D0BC /* LaunchScreen.storyboard */,
 				D4BE524026383F0700D8D0BC /* Info.plist */,
@@ -297,6 +300,7 @@
 				D4BE523C26383F0700D8D0BC /* Assets.xcassets in Resources */,
 				D4BE523A26383F0500D8D0BC /* Main.storyboard in Resources */,
 				D4BE527226383F6B00D8D0BC /* tableview_pull_refresh@2x.png in Resources */,
+				D4B42B53263909A900446B17 /* kcxvw-be0wv.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
