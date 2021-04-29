@@ -340,8 +340,6 @@ typedef struct _IsBounceTopPadding {
         }
             break;
         case UIGestureRecognizerStateEnded: {
-            
-            
             // 这个if是为了避免在拉到边缘时，以一个非常小的初速度松手不回弹的问题
 //            if ([self _abs:[recognizer velocityInView:self].y] < 120) {
 //                if (self.firstScrollViewIsReachTop &&
@@ -360,7 +358,6 @@ typedef struct _IsBounceTopPadding {
                 [self performBounceForScrollView:self.mainTableView isAtTop:result.isTop padding:result.padding];
                 return;
             }
-            
             CGFloat velocityY = [recognizer velocityInView:self].y;
             
             ZZDynamicItem *item = [[ZZDynamicItem alloc] init];
@@ -402,29 +399,26 @@ typedef struct _IsBounceTopPadding {
         if ([self.delegate respondsToSelector:@selector(multipleScrollView:scrollToTop:)]) {
             CGFloat _padding = [self.delegate multipleScrollView:self scrollToTop:self.mainTableView];
             if (_padding <= 0) {
+                result.isBounce = NO;
                 [self performBounceForScrollView:self.mainTableView isAtTop:YES];
             }else{
                 result.padding = _padding;
                 result.isTop = YES;
                 result.isBounce = NO;
             }
-            
-        }else{
-            [self performBounceForScrollView:self.mainTableView isAtTop:YES];
         }
     }else if (self.lastScrollViewIsReachBottom && self.mainTableView.isReachBottom) {
         
         if ([self.delegate respondsToSelector:@selector(multipleScrollView:scrollToLastBottom:)]) {
             CGFloat _padding = [self.delegate multipleScrollView:self scrollToLastBottom:self.mainTableView];
             if (_padding <= 0) {
+                result.isBounce = NO;
                 [self performBounceForScrollView:self.mainTableView isAtTop:NO];
             }else{
                 result.padding = _padding;
                 result.isTop = NO;
                 result.isBounce = NO;
             }
-        }else{
-            [self performBounceForScrollView:self.mainTableView isAtTop:NO];
         }
     }
     return result;
@@ -503,9 +497,7 @@ typedef struct _IsBounceTopPadding {
             }else {
                 if (scrollView == self.mainTableView && i > 0) {
                     UIScrollView *nextScrollView = array[i - 1];
-                    if ( nextScrollView == self.mainTableView){
-                        continue;
-                    }
+
                     BOOL isTouchBottom = [self isTouchBottom:nextScrollView];
                     
                     if (isTouchBottom) {
@@ -550,13 +542,18 @@ typedef struct _IsBounceTopPadding {
 }
 
 - (void)bounceForScrollView:(UIScrollView *)scrollView isAtTop:(BOOL)isTop padding:(CGFloat)padding{
-    [self.dynamicAnimator removeBehavior:self.inertialBehavior];
+    if (self.inertialBehavior) {
+        [self.dynamicAnimator removeBehavior:self.inertialBehavior];
+    }
     
+    if (self.bounceBehavior) {
+        [self.dynamicAnimator addBehavior:self.bounceBehavior];
+    }
+
     ZZDynamicItem *item = [[ZZDynamicItem alloc] init];
     CGPoint center = scrollView.contentOffset;
     item.center = center;
     CGFloat attachedToAnchorY = isTop ? -padding : scrollView.maxContentOffsetY + padding;
-    
     UIAttachmentBehavior *bounceBehavior = [[UIAttachmentBehavior alloc] initWithItem:item attachedToAnchor:CGPointMake(0, attachedToAnchorY)];
     bounceBehavior.length = 0;
     bounceBehavior.damping = 1;
