@@ -10,6 +10,7 @@
 		1755E9D549D323FA7A47AD26 /* Pods_ZZMultipleScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80887EC08966E33D3D1CF1F /* Pods_ZZMultipleScrollView.framework */; };
 		D4B42B53263909A900446B17 /* kcxvw-be0wv.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4B42B52263909A900446B17 /* kcxvw-be0wv.gif */; };
 		D4B42C4126391F6D00446B17 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B42C4026391F6D00446B17 /* MoreViewController.swift */; };
+		D4B42C632639587800446B17 /* MoreScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B42C622639587800446B17 /* MoreScrollView.swift */; };
 		D4BE523326383F0500D8D0BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE523226383F0500D8D0BC /* AppDelegate.swift */; };
 		D4BE523726383F0500D8D0BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE523626383F0500D8D0BC /* ViewController.swift */; };
 		D4BE523A26383F0500D8D0BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BE523826383F0500D8D0BC /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		AD02142771CF1603A16A6A00 /* Pods-ZZMultipleScrollView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZMultipleScrollView.debug.xcconfig"; path = "Target Support Files/Pods-ZZMultipleScrollView/Pods-ZZMultipleScrollView.debug.xcconfig"; sourceTree = "<group>"; };
 		D4B42B52263909A900446B17 /* kcxvw-be0wv.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "kcxvw-be0wv.gif"; sourceTree = "<group>"; };
 		D4B42C4026391F6D00446B17 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		D4B42C622639587800446B17 /* MoreScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreScrollView.swift; sourceTree = "<group>"; };
 		D4BE522F26383F0500D8D0BC /* ZZMultipleScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZMultipleScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BE523226383F0500D8D0BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4BE523626383F0500D8D0BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				D4BE523226383F0500D8D0BC /* AppDelegate.swift */,
 				D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */,
 				D4BE526F26383F6A00D8D0BC /* TwoScrollView.swift */,
+				D4B42C622639587800446B17 /* MoreScrollView.swift */,
 				D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */,
 				D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */,
 				D4BE523626383F0500D8D0BC /* ViewController.swift */,
@@ -370,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B42C632639587800446B17 /* MoreScrollView.swift in Sources */,
 				D4BE527026383F6B00D8D0BC /* MultipleScrollView.m in Sources */,
 				D4BE528E2638408100D8D0BC /* UIScrollView+MultipleScrollView.m in Sources */,
 				D4BE523726383F0500D8D0BC /* ViewController.swift in Sources */,
@@ -556,7 +560,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WDBN6ZMF6N;
 				INFOPLIST_FILE = ZZMultipleScrollView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -580,7 +584,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WDBN6ZMF6N;
 				INFOPLIST_FILE = ZZMultipleScrollView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

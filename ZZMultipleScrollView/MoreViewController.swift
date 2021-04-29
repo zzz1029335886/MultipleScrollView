@@ -74,11 +74,15 @@ class MoreViewController: UIViewController {
         let width = self.view.frame.width
         let height = self.view.frame.height
         
-        let tableView = MultipleScrollView.init(frame: .init(x: 0, y: 88, width: width, height: height - 88))
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.tag = 1
-        self.view.addSubview(tableView)
+        let multipleScrollView = MultipleScrollView.init(frame: .init(x: 0, y: 88, width: width, height: height - 88))
+        multipleScrollView.dataSource = self
+        multipleScrollView.delegate = self
+        multipleScrollView.tag = 1
+        
+        let tableHeaderView = UIView.init(frame: .init(x: 0, y: 0, width: width, height: 200))
+        tableHeaderView.backgroundColor = .red
+        multipleScrollView.tableView.tableHeaderView = tableHeaderView
+        self.view.addSubview(multipleScrollView)
     }
 }
 

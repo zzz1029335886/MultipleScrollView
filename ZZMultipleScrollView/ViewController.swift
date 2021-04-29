@@ -10,6 +10,8 @@ import UIKit
 class ViewController: UIViewController {
     var count = 30
     var footerTableView: UITableView!
+    var scrollView : TwoScrollView?
+    var headerView : UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,8 @@ class ViewController: UIViewController {
         headerView.delegate = self
         headerView.dataSource = self
         headerView.tag = 1
-                
+        self.headerView = headerView
+        
         let footerLabel = UILabel(frame: .init(x: 0, y: 0, width: width, height: 200))
         footerLabel.text = "123"
         
@@ -53,6 +56,7 @@ class ViewController: UIViewController {
         view.hasRefreshHeader = true
         view.kDelegate = self
         self.view.addSubview(view)
+        self.scrollView = view
         
         view.snp.makeConstraints { (m) in
             m.bottom.trailing.leading.equalToSuperview()
@@ -64,7 +68,9 @@ class ViewController: UIViewController {
     
     @objc
     func more() {
-        self.navigationController?.pushViewController(MoreViewController(), animated: true)
+        self.headerView.frame.size.height = 100
+        self.scrollView?.reload()
+//        self.navigationController?.pushViewController(MoreViewController(), animated: true)
     }
     
     

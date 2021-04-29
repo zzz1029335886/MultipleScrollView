@@ -30,14 +30,14 @@ typedef struct _IsBounceTopPadding {
 
 @property(nonatomic) BOOL isObservingWebContentSize;
 @property(nonatomic) CGFloat bounceDistanceThreshold; //边缘处能上拉或下拉的最大距离
+@property(nonatomic,weak) UIView *firstSectionView; //边缘处能上拉或下拉的最大距离
 
 
 - (BOOL)firstScrollViewIsReachTop;
 - (BOOL)lastScrollViewIsReachBottom;
 
 @property(nonatomic, strong) NSArray<UIView *> *allView;
-@property(nonatomic, strong) NSArray<UIView *> *topAllView;
-@property(nonatomic, strong) NSArray<UIView *> *bottomAllView;
+@property(nonatomic, strong) NSArray<UIView *> *includeTableViewViews;
 @property(nonatomic, strong) NSArray<NSArray<UITableViewCell *> *> *cellsArray;
 @property(nonatomic, strong) UITableViewCell *lastCell;
 
@@ -73,7 +73,7 @@ typedef struct _IsBounceTopPadding {
         _mainTableView.dataSource = self;
         _mainTableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0.01, 0.01)];
         _mainTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0.01, 0.01)];
-        _mainTableView.estimatedRowHeight = self.bounds.size.height;
+//        _mainTableView.estimatedRowHeight = self.bounds.size.height;
         _mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         if (@available(iOS 13.0, *)) {
@@ -91,7 +91,7 @@ typedef struct _IsBounceTopPadding {
 - (NSArray<UIView *> *)allView{
     if (!_allView) {
         NSMutableArray<UIView *> *allView = [NSMutableArray array];
-        NSMutableArray<UIView *> *topAllView = [NSMutableArray array];
+        NSMutableArray<UIView *> *includeTableViewViews = [NSMutableArray array];
         NSMutableArray<NSMutableArray<UITableViewCell *> *> *cellsArray = [NSMutableArray array];
         
         if (self.dataSource) {
@@ -107,8 +107,8 @@ typedef struct _IsBounceTopPadding {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
                     UIView *view = [self.dataSource multipleScrollView:self viewForRowAtIndexPath: indexPath];
                     [allView addObject:view];
-                    [topAllView addObject:view];
-                    [topAllView addObject:self.mainTableView];
+                    [includeTableViewViews addObject:view];
+                    [includeTableViewViews addObject:self.mainTableView];
                     
                     UITableViewCell *cell = [self cellForIndexPath:indexPath];
                     [cells addObject:cell];
@@ -116,12 +116,11 @@ typedef struct _IsBounceTopPadding {
                 [cellsArray addObject:cells];
             }
         }
-        [topAllView removeLastObject];
+        [includeTableViewViews removeLastObject];
         
         _cellsArray = cellsArray;
         _allView = allView;
-        _topAllView = topAllView;
-        _bottomAllView = [topAllView reverseObjectEnumerator].allObjects;
+        _includeTableViewViews = includeTableViewViews;
     }
     return _allView;
 }
@@ -130,7 +129,11 @@ typedef struct _IsBounceTopPadding {
     NSString *string = @"UITableViewCell";
     string = [string stringByAppendingFormat:@"%ld%ld", indexPath.section * 10000, indexPath.row];
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
-    cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    cell.contentView.autoresizingMask = UIViewAutoresizingNone;
+    cell.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    cell.contentView.autoresizesSubviews = NO;
+    cell.contentView.tag = indexPath.section * 10000 + indexPath.row;
+    [self equalSubView:cell.contentView superView:cell];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -182,7 +185,22 @@ typedef struct _IsBounceTopPadding {
         return NO;
     }
     
-    if (cell.frame.origin.y < self.mainTableView.contentOffset.y){
+    CGFloat exitHeight = 0;
+    if (cell.contentView.tag == 0) {
+        UIView *view = self.mainTableView.tableHeaderView;
+        if (view) {
+            exitHeight = view.frame.size.height;
+        }
+//        if (self.firstSectionView) {
+//            exitHeight += self.firstSectionView.frame.size.height;
+//        }
+        if (exitHeight < self.mainTableView.contentOffset.y){
+            return YES;
+        }
+        return NO;
+    }
+    
+    if ((cell.frame.origin.y - exitHeight) < self.mainTableView.contentOffset.y){
         return YES;
     }
     return NO;
@@ -246,6 +264,7 @@ typedef struct _IsBounceTopPadding {
 }
 
 - (void)reload;{
+//    _mainTableView.estimatedRowHeight = self.bounds.size.height;
     
     _allView = nil;
    [self allView];
@@ -427,11 +446,11 @@ typedef struct _IsBounceTopPadding {
 }
 
 - (void)scrollViewsWithDeltaY:(CGFloat)deltaY velocityY: (CGFloat) velocityY{
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.includeTableViewViews];
+    [array insertObject:self.mainTableView atIndex:0];
+    [array addObject:self.mainTableView];
     
     if (deltaY < 0) { //上滑
-        NSMutableArray *array = [NSMutableArray arrayWithArray:self.topAllView];
-        [array insertObject:self.mainTableView atIndex:0];
-        [array addObject:self.mainTableView];
         
         for (int i = 0; i< array.count; i++) {
             UIView *view = array[i];
@@ -449,7 +468,9 @@ typedef struct _IsBounceTopPadding {
             }else {
                 if (scrollView == self.mainTableView && i < array.count - 1) {
                     UIScrollView *nextScrollView = array[i + 1];
-                    if ([self isTouchTop:nextScrollView]) {
+                    BOOL isTouchTop = [self isTouchTop:nextScrollView];
+                    
+                    if (isTouchTop) {
                         continue;
                     } else {
                         [self topPanScrollView:scrollView deltaY:deltaY];
@@ -463,18 +484,14 @@ typedef struct _IsBounceTopPadding {
         }
         
     } else if (deltaY > 0) { //下滑
-        NSMutableArray *array = [NSMutableArray arrayWithArray:self.bottomAllView];
-        [array insertObject:self.mainTableView atIndex:0];
-        [array addObject:self.mainTableView];
         
-        
-        for (int i = 0; i< array.count; i++) {
+        for (NSInteger i = array.count - 1; i >= 0; i--) {
             UIView *view = array[i];
             UIScrollView *scrollView = [self getScrollView:view];
             
             if ([self isReachTopView:scrollView]) {
                 
-                if (i == array.count - 1) {
+                if (i == 0) {
                     scrollView = self.mainTableView;
                     CGFloat bounceDelta = MAX(0, (self.bounceDistanceThreshold - [self _abs:(scrollView.contentOffset.y)]) / self.bounceDistanceThreshold) * 0.5;
                     CGFloat y = scrollView.contentOffset.y - deltaY * bounceDelta;
@@ -484,9 +501,14 @@ typedef struct _IsBounceTopPadding {
                     continue;
                 }
             }else {
-                if (scrollView == self.mainTableView && i < array.count - 1) {
-                    UIScrollView *nextScrollView = array[i + 1];
-                    if ([self isTouchBottom:nextScrollView]) {
+                if (scrollView == self.mainTableView && i > 0) {
+                    UIScrollView *nextScrollView = array[i - 1];
+                    if ( nextScrollView == self.mainTableView){
+                        continue;
+                    }
+                    BOOL isTouchBottom = [self isTouchBottom:nextScrollView];
+                    
+                    if (isTouchBottom) {
                         continue;
                     } else {
                         [self bottomPanScrollView:scrollView deltaY:deltaY];
@@ -568,8 +590,13 @@ typedef struct _IsBounceTopPadding {
         return [[UIView alloc]init];
     }
     
+    
     if (self.delegate && [self.delegate respondsToSelector: @selector(multipleScrollView:viewForHeaderInSection:)]) {
-        return [self.delegate multipleScrollView:self viewForHeaderInSection:section];
+        UIView *view = [self.delegate multipleScrollView:self viewForHeaderInSection:section];
+        if (section == 0) {
+            self.firstSectionView = view;
+        }
+        return view;
     } else {
         return nil;
     }
@@ -647,10 +674,12 @@ typedef struct _IsBounceTopPadding {
                 scrollView.frame = frame;
             }
             if (contentView.frame.size.height > 0) {
+//                tableView.estimatedRowHeight = contentView.frame.size.height;
                 [self constraintHeightWidthView:contentView];
             }
             cell.tag = 1;
         }
+        
         return cell;
     }else{
         return [[UITableViewCell alloc]init];
@@ -771,9 +800,11 @@ typedef struct _IsBounceTopPadding {
 
 - (void)equalSubView: (UIView *)subView
            superView: (UIView *)superView {
+    NSLayoutConstraint *botttom = [self equalSubView:subView superView:superView attribute:NSLayoutAttributeBottom];
+    
     [superView addConstraints:@[
         [self equalSubView:subView superView:superView attribute:NSLayoutAttributeTop],
-        [self equalSubView:subView superView:superView attribute:NSLayoutAttributeBottom],
+        botttom,
         [self equalSubView:subView superView:superView attribute:NSLayoutAttributeLeading],
         [self equalSubView:subView superView:superView attribute:NSLayoutAttributeTrailing]
     ]];
