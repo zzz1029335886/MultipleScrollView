@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var count = 30
+    var count = 2
     var footerTableView: UITableView!
     var scrollView : TwoScrollView?
     var headerView : UITableView!
@@ -36,13 +36,25 @@ class ViewController: UIViewController {
         contentView.delegate = self
         contentView.tag = 1
         contentView.dataSource = self
+        contentView.estimatedRowHeight = 44
         self.footerTableView = contentView
         
         let headerView = UITableView.init(frame: .init(x: 0, y: 0, width: width, height: height))
         headerView.backgroundColor = .gray
         headerView.delegate = self
+        headerView.estimatedRowHeight = 44
         headerView.dataSource = self
         headerView.tag = 1
+        let headerViewFooterView = UIView.init(frame: .init(x: 0, y: 0, width: width, height: 44))
+        let button = UIButton()
+        headerViewFooterView.addSubview(button)
+        button.snp.makeConstraints { (m) in
+            m.center.equalToSuperview()
+        }
+        button.setTitle("更多", for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
+        button.addTarget(self, action: #selector(headerViewAddMore), for: .touchUpInside)
+        headerView.tableFooterView = headerViewFooterView
         self.headerView = headerView
         
         let footerLabel = UILabel(frame: .init(x: 0, y: 0, width: width, height: 200))
@@ -67,10 +79,18 @@ class ViewController: UIViewController {
     }
     
     @objc
+    func headerViewAddMore() {
+        self.count += 2
+        self.headerView.reloadData()
+        self.scrollView?.reloadHeaderView()
+        self.scrollView?.endRefreshHeader()
+    }
+    
+    @objc
     func more() {
-        self.headerView.frame.size.height = 100
-        self.scrollView?.reload()
-//        self.navigationController?.pushViewController(MoreViewController(), animated: true)
+//        self.headerView.frame.size.height = 100
+//        self.scrollView?.reload()
+        self.navigationController?.pushViewController(MoreViewController(), animated: true)
     }
     
     
@@ -96,16 +116,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
 extension ViewController: TwoScrollViewDelegte{
     func twoScrollViewRefreshFooter(_ multipleScrollView: TwoScrollView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.count += 30
+            self.count += 2
             self.footerTableView.reloadData()
+            multipleScrollView.reloadFooterView()
             multipleScrollView.endRefreshFooter()
         }
     }
     
     func twoScrollViewRefreshHeader(_ multipleScrollView: TwoScrollView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.count = 30
+            self.count = 2
             self.footerTableView.reloadData()
+            multipleScrollView.reloadHeaderView()
             multipleScrollView.endRefreshHeader()
         }
     }

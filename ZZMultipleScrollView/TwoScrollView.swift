@@ -17,7 +17,7 @@ protocol TwoScrollViewDelegte: class{
     func twoScrollView(_ multipleScrollView: TwoScrollView, footerViewScrollToBottom footerView: UIView)
     func twoScrollView(_ multipleScrollView: TwoScrollView, headerViewScrollToBottom headerView: UIView)
     func twoScrollView(_ multipleScrollView: TwoScrollView, footerViewWillShow footerView: UIView)
-    func twoScrollView(_ multipleScrollView: TwoScrollView, sectionViewWillShow sectionView: UIView)
+    func twoScrollView(_ multipleScrollView: TwoScrollView, footerSectionViewWillShow sectionView: UIView)
 }
 
 extension TwoScrollViewDelegte{
@@ -26,10 +26,11 @@ extension TwoScrollViewDelegte{
     func twoScrollViewRefreshHeader(_ multipleScrollView: TwoScrollView){}
     func twoScrollViewRefreshFooter(_ multipleScrollView: TwoScrollView){}
     func twoScrollView(_ multipleScrollView: TwoScrollView, scrollIn footerView: UIView){}
-    func twoScrollView(_ multipleScrollView: TwoScrollView, footerViewScrollToBottom footerView: UIView){}
     func twoScrollView(_ multipleScrollView: TwoScrollView, headerViewScrollToBottom headerView: UIView){}
+    
+    func twoScrollView(_ multipleScrollView: TwoScrollView, footerViewScrollToBottom footerView: UIView){}
     func twoScrollView(_ multipleScrollView: TwoScrollView, footerViewWillShow footerView: UIView){}
-    func twoScrollView(_ multipleScrollView: TwoScrollView, sectionViewWillShow sectionView: UIView){}
+    func twoScrollView(_ multipleScrollView: TwoScrollView, footerSectionViewWillShow sectionView: UIView){}
 }
 
 class TwoScrollView: MultipleScrollView {
@@ -41,7 +42,9 @@ class TwoScrollView: MultipleScrollView {
     var headerPullText = "松开立即刷新"
     var headerRefreshingText = "正在刷新..."
 
-    var sectionView: UIView?
+    var footerSectionView: UIView?
+    var headerSectionView: UIView?
+    
     var headerView: UIView!
     var footerView: UIView!
     weak var kDelegate: TwoScrollViewDelegte?
@@ -101,7 +104,23 @@ class TwoScrollView: MultipleScrollView {
         
         self.footerView = footerView
         self.headerView = headerView
-        self.sectionView = sectionView
+        self.footerSectionView = sectionView
+        self.clipsToBounds = true
+        self.delegate = self
+        self.dataSource = self
+    }
+    
+    init(frame: CGRect,
+         headerSectionView: UIView?,
+         headerView: UIView,
+         footerSectionView: UIView?,
+         footerView: UIView) {
+        super.init(frame: frame)
+        
+        self.footerView = footerView
+        self.headerView = headerView
+        self.footerSectionView = footerSectionView
+        self.headerSectionView = headerSectionView
         self.clipsToBounds = true
         self.delegate = self
         self.dataSource = self
@@ -119,6 +138,57 @@ class TwoScrollView: MultipleScrollView {
             footerRefreshControl.controlType = .normal
             self.scrollBottom()
         }
+    }
+    
+    func reloadHeaderView(){
+        heightEqualContentSize(self.headerView)
+        reload()
+    }
+    
+    func reloadFooterView(){
+        heightEqualContentSize(self.footerView)
+        reload()
+    }
+    
+    override func reload() {
+        super.reload()
+        
+    }
+    
+    func heightEqualContentSize(_ view: UIView) {
+        if let scrollView = view as? UIScrollView {
+            let oldContentSizeHeight = scrollView.contentSize.height
+            scrollView.layoutIfNeeded()
+            let newContentSizeHeight = scrollView.contentSize.height
+
+            let height = min(self.frame.height, newContentSizeHeight)
+
+            if height != scrollView.frame.size.height {
+                scrollView.frame.size.height = min(self.frame.height, scrollView.contentSize.height)
+            }else if oldContentSizeHeight == newContentSizeHeight{
+                return
+            }else{
+                if let cell = cellFromView(view) {
+                    let margin = tableView.contentOffset.y - cell.frame.origin.y
+                    if margin > 0 {
+                        scrollView.contentOffset = .init(x: 0, y: scrollView.contentOffset.y + margin)
+                        tableView.setContentOffset(.init(x: 0, y: cell.frame.origin.y), animated: false)
+                    }
+                }
+                return
+            }
+        }
+    }
+    
+    func cellFromView(_ view: UIView) -> UITableViewCell? {
+        var superview = view.superview
+        while !(superview is UITableViewCell) {
+            superview = superview?.superview
+            if superview == nil {
+                return nil
+            }
+        }
+        return superview as? UITableViewCell
     }
     
     required init?(coder: NSCoder) {
@@ -153,9 +223,9 @@ extension TwoScrollView: MultipleScrollViewDelegate, MultipleScrollViewDataSourc
     
     func multipleScrollView(_ multipleScrollView: MultipleScrollView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
-            return self.sectionView
+            return self.footerSectionView
         }
-        return nil
+        return self.headerSectionView
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -236,7 +306,7 @@ extension TwoScrollView: MultipleScrollViewDelegate, MultipleScrollViewDataSourc
     }
     
     func multipleScrollView(_ multipleScrollView: MultipleScrollView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        self.kDelegate?.twoScrollView(self, sectionViewWillShow: view)
+        self.kDelegate?.twoScrollView(self, footerSectionViewWillShow: view)
     }
     
     

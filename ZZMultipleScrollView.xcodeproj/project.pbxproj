@@ -19,8 +19,6 @@
 		D4BE524A26383F0800D8D0BC /* ZZMultipleScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE524926383F0800D8D0BC /* ZZMultipleScrollViewTests.swift */; };
 		D4BE525526383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE525426383F0800D8D0BC /* ZZMultipleScrollViewUITests.swift */; };
 		D4BE527026383F6B00D8D0BC /* MultipleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526B26383F6A00D8D0BC /* MultipleScrollView.m */; };
-		D4BE527126383F6B00D8D0BC /* tableview_pull_refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */; };
-		D4BE527226383F6B00D8D0BC /* tableview_pull_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */; };
 		D4BE527326383F6B00D8D0BC /* ZZRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */; };
 		D4BE527426383F6B00D8D0BC /* TwoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE526F26383F6A00D8D0BC /* TwoScrollView.swift */; };
 		D4BE52882638407300D8D0BC /* ZZDynamicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE52862638407200D8D0BC /* ZZDynamicItem.m */; };
@@ -65,8 +63,6 @@
 		D4BE526926383F6900D8D0BC /* ZZMultipleScrollView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZZMultipleScrollView-Bridging-Header.h"; sourceTree = "<group>"; };
 		D4BE526A26383F6A00D8D0BC /* MultipleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleScrollView.h; sourceTree = "<group>"; };
 		D4BE526B26383F6A00D8D0BC /* MultipleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleScrollView.m; sourceTree = "<group>"; };
-		D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview_pull_refresh@3x.png"; sourceTree = "<group>"; };
-		D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview_pull_refresh@2x.png"; sourceTree = "<group>"; };
 		D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZRefreshControl.swift; sourceTree = "<group>"; };
 		D4BE526F26383F6A00D8D0BC /* TwoScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoScrollView.swift; sourceTree = "<group>"; };
 		D4BE52862638407200D8D0BC /* ZZDynamicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZDynamicItem.m; sourceTree = "<group>"; };
@@ -151,8 +147,6 @@
 				D4BE526E26383F6A00D8D0BC /* ZZRefreshControl.swift */,
 				D4BE526F26383F6A00D8D0BC /* TwoScrollView.swift */,
 				D4B42C622639587800446B17 /* MoreScrollView.swift */,
-				D4BE526D26383F6A00D8D0BC /* tableview_pull_refresh@2x.png */,
-				D4BE526C26383F6A00D8D0BC /* tableview_pull_refresh@3x.png */,
 				D4BE523626383F0500D8D0BC /* ViewController.swift */,
 				D4B42C4026391F6D00446B17 /* MoreViewController.swift */,
 				D4BE523826383F0500D8D0BC /* Main.storyboard */,
@@ -301,11 +295,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4BE527126383F6B00D8D0BC /* tableview_pull_refresh@3x.png in Resources */,
 				D4BE523F26383F0700D8D0BC /* LaunchScreen.storyboard in Resources */,
 				D4BE523C26383F0700D8D0BC /* Assets.xcassets in Resources */,
 				D4BE523A26383F0500D8D0BC /* Main.storyboard in Resources */,
-				D4BE527226383F6B00D8D0BC /* tableview_pull_refresh@2x.png in Resources */,
 				D4B42B53263909A900446B17 /* kcxvw-be0wv.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

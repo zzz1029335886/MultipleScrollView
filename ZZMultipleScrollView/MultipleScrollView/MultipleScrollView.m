@@ -21,24 +21,30 @@ typedef struct _IsBounceTopPadding {
     CGFloat WIDTH;
 }
 
+/// 主tableView
 @property(nonatomic, strong) UITableView *mainTableView;
-
+/// 手势
 @property(nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 @property(nonatomic, strong) UIDynamicAnimator *dynamicAnimator;
 @property(nonatomic, weak) UIDynamicItemBehavior *inertialBehavior;
 @property(nonatomic, weak) UIAttachmentBehavior *bounceBehavior;
+/// 边缘处能上拉或下拉的最大距离
+@property(nonatomic) CGFloat bounceDistanceThreshold;
+/// 边缘处能上拉或下拉的最大距离
+@property(nonatomic,weak) UIView *firstSectionView;
 
-@property(nonatomic) BOOL isObservingWebContentSize;
-@property(nonatomic) CGFloat bounceDistanceThreshold; //边缘处能上拉或下拉的最大距离
-@property(nonatomic,weak) UIView *firstSectionView; //边缘处能上拉或下拉的最大距离
-
-
+/// 第一个scrollView到达顶部
 - (BOOL)firstScrollViewIsReachTop;
+/// 最后一个scrollView到达底部
 - (BOOL)lastScrollViewIsReachBottom;
 
+/// 所有view
 @property(nonatomic, strong) NSArray<UIView *> *allView;
+/// allView里插入包括了tableView
 @property(nonatomic, strong) NSArray<UIView *> *includeTableViewViews;
+/// 所有cell
 @property(nonatomic, strong) NSArray<NSArray<UITableViewCell *> *> *cellsArray;
+/// 最后一个cell，用于检测到达底部
 @property(nonatomic, strong) UITableViewCell *lastCell;
 
 @end
@@ -71,8 +77,6 @@ typedef struct _IsBounceTopPadding {
         _mainTableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
-        _mainTableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0.01, 0.01)];
-        _mainTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0.01, 0.01)];
 //        _mainTableView.estimatedRowHeight = self.bounds.size.height;
         _mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
@@ -125,6 +129,8 @@ typedef struct _IsBounceTopPadding {
     return _allView;
 }
 
+/// 根据indexPath创建cell
+/// @param indexPath 位置
 - (UITableViewCell *)cellForIndexPath:(NSIndexPath *)indexPath{
     NSString *string = @"UITableViewCell";
     string = [string stringByAppendingFormat:@"%ld%ld", indexPath.section * 10000, indexPath.row];
@@ -138,6 +144,7 @@ typedef struct _IsBounceTopPadding {
     return cell;
 }
 
+/// 第一个scrollView到达顶部
 - (BOOL)firstScrollViewIsReachTop{
     if ([self.allView.firstObject isKindOfClass:UIScrollView.class]) {
         UIScrollView *firstScrollView = (UIScrollView *)self.allView.firstObject;
@@ -147,6 +154,7 @@ typedef struct _IsBounceTopPadding {
     }
 }
 
+/// 最后一个scrollView到达底部
 - (BOOL)lastScrollViewIsReachBottom{
     if ([self.allView.lastObject isKindOfClass:UIScrollView.class]) {
         UIScrollView *lastScrollView = (UIScrollView *)self.allView.lastObject;
@@ -156,6 +164,8 @@ typedef struct _IsBounceTopPadding {
     }
 }
 
+/// 根据view获取scrollView
+/// @param view 需要传入view
 - (UIScrollView *)getScrollView: (UIView *)view{
     if ([view isKindOfClass:UIScrollView.class]) {
         UIScrollView *scrollView = (UIScrollView *)view;
@@ -168,6 +178,8 @@ typedef struct _IsBounceTopPadding {
     }
 }
 
+/// 根据view获取cell
+/// @param view 需要传入view
 - (UITableViewCell *)getCellFromView:(UIView *)view{
     while (![view isKindOfClass:UITableViewCell.class]) {
         
@@ -179,6 +191,8 @@ typedef struct _IsBounceTopPadding {
     return (UITableViewCell *)view;
 }
 
+/// view是否到达顶部
+/// @param view 判断的view
 - (BOOL)isTouchTop: (UIView *)view{
     UITableViewCell *cell = [self getCellFromView:view];
     if (!cell) {
@@ -206,18 +220,21 @@ typedef struct _IsBounceTopPadding {
     return NO;
 }
 
+/// 是否到达底部
+/// @param view 判断的view
 - (BOOL)isTouchBottom: (UIView *)view{
     UITableViewCell *cell = [self getCellFromView:view];
     if (!cell) {
         return NO;
     }
-    
     if (CGRectGetMaxY(cell.frame) > self.mainTableView.contentOffset.y + self.mainTableView.frame.size.height){
         return YES;
     }
     return NO;
 }
 
+/// view是否滚到自己的底部
+/// @param view 判断的view
 - (BOOL)isReachBottomView: (UIView *)view{
     UIScrollView *scrollView = [self getScrollView:view];
     if (scrollView) {
@@ -227,6 +244,8 @@ typedef struct _IsBounceTopPadding {
     }
 }
 
+/// view是否滚到自己的顶部
+/// @param view 判断的view
 - (BOOL)isReachTopView: (UIView *)view{
     UIScrollView *scrollView = [self getScrollView:view];
     if (scrollView) {
@@ -263,6 +282,7 @@ typedef struct _IsBounceTopPadding {
     NSLog(@"dealloc");
 }
 
+/// 刷新
 - (void)reload;{
 //    _mainTableView.estimatedRowHeight = self.bounds.size.height;
     
@@ -275,7 +295,6 @@ typedef struct _IsBounceTopPadding {
         }];
     }];
     [self.mainTableView reloadData];
-
 }
 
 - (void)setupViews{
@@ -292,14 +311,14 @@ typedef struct _IsBounceTopPadding {
     [self addGestureRecognizer:self.panRecognizer];
 }
 
-// 滚动中单击可以停止滚动
+/// 滚动中，单击可以停止滚动
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
     [self.dynamicAnimator removeAllBehaviors];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
-// 避免影响横滑手势
+/// 避免影响横滑手势
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if ([gestureRecognizer isKindOfClass:UIPanGestureRecognizer.class]) {
         CGPoint velocity = [(UIPanGestureRecognizer *)gestureRecognizer velocityInView:self];
@@ -310,7 +329,7 @@ typedef struct _IsBounceTopPadding {
 }
 
 #pragma mark - UIDynamicAnimatorDelegate
-//防止误触tableView的点击事件
+/// 防止误触tableView的点击事件
 - (void)dynamicAnimatorWillResume:(UIDynamicAnimator *)animator {
     self.mainTableView.userInteractionEnabled = NO;
     [self.allView enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -326,7 +345,6 @@ typedef struct _IsBounceTopPadding {
 }
 
 - (void)handlePanGestureRecognizer:(UIPanGestureRecognizer *)recognizer {
-    
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan: {
             [self.dynamicAnimator removeAllBehaviors];
@@ -334,9 +352,8 @@ typedef struct _IsBounceTopPadding {
             break;
         case UIGestureRecognizerStateChanged: {
             CGPoint translation = [recognizer translationInView:self];
-            [self scrollViewsWithDeltaY:translation.y velocityY:[self _abs:[recognizer velocityInView:self].y]];
+            [self scrollViewsWithDeltaY:translation.y velocityY:[self _abs:[recognizer velocityInView:self].y] isBounce:NO];
             [recognizer setTranslation:CGPointZero inView:self];
-//            NSLog(@"%d" ,self.lastScrollViewIsReachBottom && self.mainTableView.isReachBottom);
         }
             break;
         case UIGestureRecognizerStateEnded: {
@@ -379,8 +396,6 @@ typedef struct _IsBounceTopPadding {
             self.inertialBehavior = inertialBehavior;
             [self.dynamicAnimator addBehavior:inertialBehavior];
             
-            
-            
         }
             break;
         default:
@@ -388,6 +403,7 @@ typedef struct _IsBounceTopPadding {
     }
 }
 
+/// 顶部或底部的间距，用于refreshHeader和refreshFooter
 - (IsBounceTopPadding)paddingForTopOrBottom{
     IsBounceTopPadding result;
     result.isBounce = YES;
@@ -424,6 +440,7 @@ typedef struct _IsBounceTopPadding {
     return result;
 }
 
+/// 滚到顶部
 - (void)scrollTop{
     if (self.bounceBehavior) {
         [self.dynamicAnimator removeBehavior:self.bounceBehavior];
@@ -432,6 +449,7 @@ typedef struct _IsBounceTopPadding {
     [self.mainTableView scrollToTopWithAnimated:YES];
 }
 
+/// 滚到底部
 - (void)scrollBottom{
     if (self.bounceBehavior) {
         [self.dynamicAnimator removeBehavior:self.bounceBehavior];
@@ -439,10 +457,15 @@ typedef struct _IsBounceTopPadding {
     [self bounceForScrollView:self.mainTableView isAtTop:NO padding:0];
 }
 
-- (void)scrollViewsWithDeltaY:(CGFloat)deltaY velocityY: (CGFloat) velocityY{
+/// <#Description#>
+/// @param deltaY <#deltaY description#>
+/// @param velocityY <#velocityY description#>
+/// @param isBounce <#isBounce description#>
+- (void)scrollViewsWithDeltaY:(CGFloat)deltaY velocityY: (CGFloat) velocityY isBounce:(BOOL) isBounce{
     NSMutableArray *array = [NSMutableArray arrayWithArray:self.includeTableViewViews];
     [array insertObject:self.mainTableView atIndex:0];
     [array addObject:self.mainTableView];
+    NSLog(@"%lf", deltaY);
     
     if (deltaY < 0) { //上滑
         
@@ -515,26 +538,41 @@ typedef struct _IsBounceTopPadding {
     }
 }
 
-/// 向下滑
+- (void)scrollViewsWithDeltaY:(CGFloat)deltaY velocityY: (CGFloat) velocityY{
+    [self scrollViewsWithDeltaY:deltaY velocityY:velocityY isBounce:NO];
+}
+
+/// scrollView向下滑
+/// @param scrollView scrollView
+/// @param deltaY 值
 - (void)bottomPanScrollView:(UIScrollView *)scrollView deltaY:(CGFloat)deltaY{
     scrollView.contentOffset = CGPointMake(0, MAX(scrollView.contentOffset.y - deltaY, 0));
 }
-/// 向上滑
+/// scrollView向上滑
+/// @param scrollView scrollView
+/// @param deltaY 值
 - (void)topPanScrollView:(UIScrollView *)scrollView deltaY:(CGFloat)deltaY{
     scrollView.contentOffset = CGPointMake(0, MIN(scrollView.contentOffset.y - deltaY, scrollView.maxContentOffsetY));
 }
 
-//区分滚动到边缘处回弹 和 拉到边缘后以极小的初速度滚动
+/// 区分滚动到边缘处回弹 和 拉到边缘后以极小的初速度滚动
 - (void)performBounceIfNeededForScrollView:(UIScrollView *)scrollView isAtTop:(BOOL)isTop{
     if (self.inertialBehavior) {
         [self performBounceForScrollView:scrollView isAtTop:isTop padding:0];
     }
 }
 
+/// scrollView滚到顶部或者底部
+/// @param scrollView scrollView
+/// @param isTop 是否顶部
 - (void)performBounceForScrollView:(UIScrollView *)scrollView isAtTop:(BOOL)isTop{
     [self performBounceForScrollView:scrollView isAtTop:isTop padding:0];
 }
 
+/// <#Description#>
+/// @param scrollView <#scrollView description#>
+/// @param isTop <#isTop description#>
+/// @param padding <#padding description#>
 - (void)performBounceForScrollView:(UIScrollView *)scrollView isAtTop:(BOOL)isTop padding:(CGFloat)padding{
     if (!self.bounceBehavior) {
         [self bounceForScrollView:scrollView isAtTop:isTop padding:padding];
