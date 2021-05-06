@@ -79,9 +79,9 @@ class MoreViewController: UIViewController {
         multipleScrollView.delegate = self
         multipleScrollView.tag = 1
         
-        let tableHeaderView = UIView.init(frame: .init(x: 0, y: 0, width: width, height: 200))
-        tableHeaderView.backgroundColor = .red
-        multipleScrollView.tableView.tableHeaderView = tableHeaderView
+//        let tableHeaderView = UIView.init(frame: .init(x: 0, y: 0, width: width, height: 200))
+//        tableHeaderView.backgroundColor = .red
+//        multipleScrollView.tableView.tableHeaderView = tableHeaderView
         self.view.addSubview(multipleScrollView)
     }
 }
@@ -110,7 +110,7 @@ extension MoreViewController: MultipleScrollViewDelegate, MultipleScrollViewData
     
     func multipleScrollView(_ multipleScrollView: MultipleScrollView, viewForHeaderInSection section: Int) -> UIView? {
         // 没有循环利用
-        return getHeaderView()
+        return section == 0 ? nil : getHeaderView()
     }
     
 }

@@ -178,23 +178,10 @@ typedef struct _IsBounceTopPadding {
     }
 }
 
-/// 根据view获取cell
-/// @param view 需要传入view
-- (UITableViewCell *)getCellFromView:(UIView *)view{
-    while (![view isKindOfClass:UITableViewCell.class]) {
-        
-        view = view.superview;
-        if (!view) {
-            return nil;
-        }
-    }
-    return (UITableViewCell *)view;
-}
-
 /// view是否到达顶部
 /// @param view 判断的view
 - (BOOL)isTouchTop: (UIView *)view{
-    UITableViewCell *cell = [self getCellFromView:view];
+    UITableViewCell *cell = [view getCell];
     if (!cell) {
         return NO;
     }
@@ -208,7 +195,7 @@ typedef struct _IsBounceTopPadding {
 //        if (self.firstSectionView) {
 //            exitHeight += self.firstSectionView.frame.size.height;
 //        }
-        if (exitHeight < self.mainTableView.contentOffset.y){
+        if ([self _abs:exitHeight - self.mainTableView.contentOffset.y] < 1){
             return YES;
         }
         return NO;
@@ -223,7 +210,7 @@ typedef struct _IsBounceTopPadding {
 /// 是否到达底部
 /// @param view 判断的view
 - (BOOL)isTouchBottom: (UIView *)view{
-    UITableViewCell *cell = [self getCellFromView:view];
+    UITableViewCell *cell = [view getCell];
     if (!cell) {
         return NO;
     }

@@ -3,3 +3,4 @@
 //
 
 #import "MultipleScrollView.h"
+#import "UIScrollView+MultipleScrollView.h"

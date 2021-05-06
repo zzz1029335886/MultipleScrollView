@@ -140,13 +140,13 @@ class TwoScrollView: MultipleScrollView {
         }
     }
     
-    func reloadHeaderView(){
-        heightEqualContentSize(self.headerView)
+    func reloadHeaderView(height: CGFloat = 0){
+        heightEqualContentSize(self.headerView, height: height)
         reload()
     }
     
-    func reloadFooterView(){
-        heightEqualContentSize(self.footerView)
+    func reloadFooterView(height: CGFloat = 0){
+        heightEqualContentSize(self.footerView, height: height)
         reload()
     }
     
@@ -155,27 +155,34 @@ class TwoScrollView: MultipleScrollView {
         
     }
     
-    func heightEqualContentSize(_ view: UIView) {
+    func heightEqualContentSize(_ view: UIView, height height0: CGFloat = 0) {
         if let scrollView = view as? UIScrollView {
-            let oldContentSizeHeight = scrollView.contentSize.height
             scrollView.layoutIfNeeded()
             let newContentSizeHeight = scrollView.contentSize.height
-
+            
             let height = min(self.frame.height, newContentSizeHeight)
+            let addHeight = height - scrollView.frame.size.height
+            let extraHeight = max(newContentSizeHeight - scrollView.contentOffset.y - scrollView.frame.height - height0, addHeight - height0)
+
+            var tableViewScrllMargin = max(tableView.contentOffset.y - height0, 0)
+            if scrollView == footerView {
+                tableViewScrllMargin = footerView.getCell()?.frame.origin.y ?? tableViewScrllMargin + 1
+            }            
+            let tableViewScrllDistance = tableViewScrllMargin - tableView.contentOffset.y
 
             if height != scrollView.frame.size.height {
-                scrollView.frame.size.height = min(self.frame.height, scrollView.contentSize.height)
-            }else if oldContentSizeHeight == newContentSizeHeight{
-                return
-            }else{
-                if let cell = cellFromView(view) {
-                    let margin = tableView.contentOffset.y - cell.frame.origin.y
-                    if margin > 0 {
-                        scrollView.contentOffset = .init(x: 0, y: scrollView.contentOffset.y + margin)
-                        tableView.setContentOffset(.init(x: 0, y: cell.frame.origin.y), animated: false)
-                    }
+                if addHeight > height0 {
+                    scrollView.frame.size.height = height
+                }else{
+                    scrollView.frame.size.height = height
+                    tableView.setContentOffset(.init(x: 0, y: tableViewScrllMargin), animated: true)
+                    scrollView.setContentOffset(.init(x: 0, y: scrollView.contentOffset.y - tableViewScrllDistance + extraHeight), animated: true)
                 }
-                return
+                
+            }else{
+                tableView.setContentOffset(.init(x: 0, y: tableViewScrllMargin), animated: true)
+                scrollView.setContentOffset(.init(x: 0, y: scrollView.contentOffset.y - tableViewScrllDistance + extraHeight), animated: true)
+
             }
         }
     }

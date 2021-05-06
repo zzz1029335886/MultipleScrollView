@@ -15,3 +15,8 @@
 - (void)scrollToTopWithAnimated:(BOOL)animated;
 
 @end
+
+@interface UIView (MultipleScrollView)
+- (UITableViewCell *)getCell;
+
+@end

@@ -14,8 +14,9 @@
 }
 
 - (BOOL)isReachBottom {
-    return self.contentOffset.y > ([self maxContentOffsetY]) ||
-    abs(self.contentOffset.y - [self maxContentOffsetY]) < FLT_EPSILON;
+    BOOL bool1 = self.contentOffset.y > ([self maxContentOffsetY]);
+    BOOL bool2 = abs(self.contentOffset.y - [self maxContentOffsetY]) < FLT_EPSILON;
+    return  bool1 || bool2;
 }
 
 - (BOOL)isReachTop {
@@ -24,6 +25,22 @@
 
 - (void)scrollToTopWithAnimated:(BOOL)animated {
     [self setContentOffset:CGPointZero animated:animated];
+}
+
+@end
+
+@implementation UIView (MultipleScrollView)
+
+- (UITableViewCell *)getCell{
+    UIView *view = self;
+    while (![view isKindOfClass:UITableViewCell.class]) {
+        
+        view = view.superview;
+        if (!view) {
+            return nil;
+        }
+    }
+    return (UITableViewCell *)view;
 }
 
 @end
