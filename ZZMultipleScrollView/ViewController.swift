@@ -10,13 +10,14 @@ import UIKit
 class ViewController: UIViewController {
     var headerCount = 20
     var footerCount = 20
-
+    
     var scrollView : TwoScrollView?
     var footerView: UITableView!
     var headerView : UITableView!
     
     var width : CGFloat = 0
     var height : CGFloat = 0
+    var rowHeight : CGFloat = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,16 +25,9 @@ class ViewController: UIViewController {
         title = "TwoScrollView"
         width = self.view.frame.width
         height = 724
-
-        let sectionView = UIView.init(frame: .init(x: 0, y: 0, width: width, height: 44))
-        sectionView.backgroundColor = .red
-        let label1 = UILabel()
-        label1.text = "123"
-        sectionView.addSubview(label1)
-        label1.snp.makeConstraints { (m) in
-            m.left.right.top.bottom.equalToSuperview()
-            m.height.equalTo(100).priority(.high)
-        }
+        
+        let sectionView0 = createSectionView()
+        let sectionView1 = createSectionView()
         
         let footerView = creatTableView(tag: 1)
         self.footerView = footerView
@@ -45,14 +39,20 @@ class ViewController: UIViewController {
         footerLabel.text = "123"
         
         let view = TwoScrollView.init(frame: self.view.bounds,
-                                             sectionView: sectionView,
-                                             headerView: headerView,
-                                             footerView: footerView)
+                                      headerSectionView: sectionView0,
+                                      headerView: headerView,
+                                      footerSectionView: sectionView1,
+                                      footerView: footerView)
+        
         view.hasRefresFooter = true
         view.hasRefreshHeader = true
         view.kDelegate = self
         self.view.addSubview(view)
         self.scrollView = view
+        
+        let tableHeaderView = UIView.init(frame: .init(x: 0, y: 0, width: width, height: 150))
+        tableHeaderView.backgroundColor = .lightGray
+        view.tableView.tableHeaderView = tableHeaderView
         
         view.snp.makeConstraints { (m) in
             m.bottom.trailing.leading.equalToSuperview()
@@ -63,12 +63,25 @@ class ViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Refresh", style: .done, target: self, action: #selector(refresh))
     }
     
+    func createSectionView() -> UIView{
+       let sectionView = UIView.init(frame: .init(x: 0, y: 0, width: width, height: 44))
+       sectionView.backgroundColor = .red
+       let label1 = UILabel()
+       label1.text = "123"
+       sectionView.addSubview(label1)
+       label1.snp.makeConstraints { (m) in
+           m.left.right.top.bottom.equalToSuperview()
+           m.height.equalTo(88).priority(.high)
+       }
+        return sectionView
+    }
+    
     func creatTableView(tag: Int) -> UITableView{
         
         let headerView = UITableView.init(frame: .init(x: 0, y: 0, width: width, height: height))
         headerView.backgroundColor = .gray
         headerView.delegate = self
-        headerView.estimatedRowHeight = 44
+        headerView.estimatedRowHeight = rowHeight
         headerView.dataSource = self
         headerView.tag = tag
         
@@ -89,7 +102,7 @@ class ViewController: UIViewController {
     @objc
     func addMore(_ button: UIButton) {
         let addCount = 5
-        let addHeight: CGFloat = 44 * CGFloat(addCount)
+        let addHeight: CGFloat = rowHeight * CGFloat(addCount)
         if button.tag == 0 {
             
             headerCount += addCount
@@ -99,14 +112,14 @@ class ViewController: UIViewController {
         } else {
             footerCount += addCount
             footerView.reloadData()
-            scrollView?.reloadFooterView(height: addHeight)
+            scrollView?.reloadFooterView()
         }
     }
     
     @objc
     func nextPage() {
-//        self.headerView.frame.size.height = 100
-//        self.scrollView?.reload()
+        //        self.headerView.frame.size.height = 100
+        //        self.scrollView?.reload()
         self.navigationController?.pushViewController(MoreViewController(), animated: true)
     }
     
@@ -140,25 +153,25 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return rowHeight
     }
 }
 
 extension ViewController: TwoScrollViewDelegte{
     func twoScrollViewRefreshFooter(_ multipleScrollView: TwoScrollView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            self.count += 2
-//            self.footerTableView.reloadData()
-//            multipleScrollView.reloadFooterView()
+            //            self.count += 2
+            //            self.footerTableView.reloadData()
+            //            multipleScrollView.reloadFooterView()
             multipleScrollView.endRefreshFooter()
         }
     }
     
     func twoScrollViewRefreshHeader(_ multipleScrollView: TwoScrollView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            self.count = 2
-//            self.footerTableView.reloadData()
-//            multipleScrollView.reloadHeaderView()
+            //            self.count = 2
+            //            self.footerTableView.reloadData()
+            //            multipleScrollView.reloadHeaderView()
             multipleScrollView.endRefreshHeader()
         }
     }

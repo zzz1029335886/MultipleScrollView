@@ -51,6 +51,10 @@ typedef struct _IsBounceTopPadding {
 
 @implementation MultipleScrollView
 
++ (nullable UITableViewCell *)getCell:(UIView *)view;
+{
+    return [view getCell];
+}
 #pragma mark - Getters
 - (UIPanGestureRecognizer *)panRecognizer {
     if (!_panRecognizer) {
@@ -120,11 +124,13 @@ typedef struct _IsBounceTopPadding {
                 [cellsArray addObject:cells];
             }
         }
-        [includeTableViewViews removeLastObject];
         
         _cellsArray = cellsArray;
         _allView = allView;
+        
+        [includeTableViewViews insertObject:self.mainTableView atIndex:0];
         _includeTableViewViews = includeTableViewViews;
+
     }
     return _allView;
 }
@@ -190,12 +196,13 @@ typedef struct _IsBounceTopPadding {
     if (cell.contentView.tag == 0) {
         UIView *view = self.mainTableView.tableHeaderView;
         if (view) {
-            exitHeight = view.frame.size.height;
+            exitHeight = CGRectGetMaxY(view.frame);
         }
-//        if (self.firstSectionView) {
+//        view = self.firstSectionView;
+//        if (view) {
 //            exitHeight += self.firstSectionView.frame.size.height;
 //        }
-        if ([self _abs:exitHeight - self.mainTableView.contentOffset.y] < 1){
+        if (exitHeight - self.mainTableView.contentOffset.y < 1){
             return YES;
         }
         return NO;
@@ -214,7 +221,7 @@ typedef struct _IsBounceTopPadding {
     if (!cell) {
         return NO;
     }
-    if (CGRectGetMaxY(cell.frame) > self.mainTableView.contentOffset.y + self.mainTableView.frame.size.height){
+    if ((CGRectGetMaxY(cell.frame) - 1) > self.mainTableView.contentOffset.y + self.mainTableView.frame.size.height){
         return YES;
     }
     return NO;
@@ -449,10 +456,7 @@ typedef struct _IsBounceTopPadding {
 /// @param velocityY <#velocityY description#>
 /// @param isBounce <#isBounce description#>
 - (void)scrollViewsWithDeltaY:(CGFloat)deltaY velocityY: (CGFloat) velocityY isBounce:(BOOL) isBounce{
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.includeTableViewViews];
-    [array insertObject:self.mainTableView atIndex:0];
-    [array addObject:self.mainTableView];
-    NSLog(@"%lf", deltaY);
+    NSArray *array = self.includeTableViewViews;
     
     if (deltaY < 0) { //上滑
         
@@ -486,15 +490,11 @@ typedef struct _IsBounceTopPadding {
                 }
             }
         }
-        
     } else if (deltaY > 0) { //下滑
-        
         for (NSInteger i = array.count - 1; i >= 0; i--) {
             UIView *view = array[i];
             UIScrollView *scrollView = [self getScrollView:view];
-            
             if ([self isReachTopView:scrollView]) {
-                
                 if (i == 0) {
                     scrollView = self.mainTableView;
                     CGFloat bounceDelta = MAX(0, (self.bounceDistanceThreshold - [self _abs:(scrollView.contentOffset.y)]) / self.bounceDistanceThreshold) * 0.5;

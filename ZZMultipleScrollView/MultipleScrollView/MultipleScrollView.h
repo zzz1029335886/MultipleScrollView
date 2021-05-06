@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reload;
 - (void)scrollBottom;
 - (void)scrollTop;
++ (nullable UITableViewCell *)getCell:(UIView *)view;
 
 @end
 
