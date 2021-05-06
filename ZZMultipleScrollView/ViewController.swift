@@ -89,15 +89,11 @@ class ViewController: UIViewController {
     @objc
     func addMore(_ button: UIButton) {
         let addCount = 5
-        var addHeight: CGFloat = 0//44 * CGFloat(addCount)
+        let addHeight: CGFloat = 44 * CGFloat(addCount)
         if button.tag == 0 {
             
             headerCount += addCount
             headerView.reloadData()
-            for index in 0..<addCount {
-//                self.tableView?(<#T##tableView: UITableView##UITableView#>, heightForRowAt: <#T##IndexPath#>)
-                addHeight = self.tableView(headerView, heightForRowAt: IndexPath.init(row: index, section: 0))
-            }
             
             scrollView?.reloadHeaderView(height: addHeight)
         } else {
