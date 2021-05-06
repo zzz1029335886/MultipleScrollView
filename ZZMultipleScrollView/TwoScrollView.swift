@@ -155,7 +155,8 @@ class TwoScrollView: MultipleScrollView {
         
     }
     
-    func heightEqualContentSize(_ view: UIView, height height0: CGFloat = 0) {
+    func heightEqualContentSize(_ view: UIView, height height0: CGFloat) {
+        
         if let scrollView = view as? UIScrollView {
             scrollView.layoutIfNeeded()
             let newContentSizeHeight = scrollView.contentSize.height
@@ -166,19 +167,12 @@ class TwoScrollView: MultipleScrollView {
 
             var tableViewScrllMargin = max(tableView.contentOffset.y - height0, 0)
             if scrollView == footerView {
-                tableViewScrllMargin = footerView.getCell()?.frame.origin.y ?? tableViewScrllMargin + 1
+                tableViewScrllMargin = (footerView.getCell()?.frame.origin.y ?? tableViewScrllMargin) + 1
             }            
             let tableViewScrllDistance = tableViewScrllMargin - tableView.contentOffset.y
 
             if height != scrollView.frame.size.height {
-                if addHeight > height0 {
-                    scrollView.frame.size.height = height
-                }else{
-                    scrollView.frame.size.height = height
-                    tableView.setContentOffset(.init(x: 0, y: tableViewScrllMargin), animated: true)
-                    scrollView.setContentOffset(.init(x: 0, y: scrollView.contentOffset.y - tableViewScrllDistance + extraHeight), animated: true)
-                }
-                
+                scrollView.frame.size.height = height
             }else{
                 tableView.setContentOffset(.init(x: 0, y: tableViewScrllMargin), animated: true)
                 scrollView.setContentOffset(.init(x: 0, y: scrollView.contentOffset.y - tableViewScrllDistance + extraHeight), animated: true)
