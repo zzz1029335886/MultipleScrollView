@@ -166,18 +166,37 @@ class TwoScrollView: MultipleScrollView {
             var extraHeight = max(newContentSizeHeight - scrollView.contentOffset.y - scrollView.frame.height - height0, addHeight - height0)
             extraHeight = height0 == 0 ? 0 : extraHeight
             
-            var tableViewScrllMargin = max(tableView.contentOffset.y - height0, 0)
+            var tableViewScrllToY = max(tableView.contentOffset.y - height0, 0)
             if scrollView == footerView {
-                tableViewScrllMargin = (MultipleScrollView.getCell(footerView)?.frame.origin.y ?? tableViewScrllMargin) + 1
-            }            
-            let tableViewScrllDistance = tableViewScrllMargin - tableView.contentOffset.y
-
-            if height != scrollView.frame.size.height {
-                scrollView.frame.size.height = height
+                tableViewScrllToY = (MultipleScrollView.getCell(footerView)?.frame.origin.y ?? tableViewScrllToY) + 1
             }
             
-            tableView.setContentOffset(.init(x: 0, y: tableViewScrllMargin), animated: true)
-            scrollView.setContentOffset(.init(x: 0, y: scrollView.contentOffset.y - tableViewScrllDistance + extraHeight), animated: true)
+            var tableViewScrllDistance: CGFloat = 0
+            if addHeight != 0 {
+                if addHeight < height0 {
+                    extraHeight -= height0 - addHeight
+                }
+                scrollView.frame.size.height = height
+                tableViewScrllDistance = tableViewScrllToY - tableView.contentOffset.y
+            }
+            
+            if scrollView == headerView, let tableHeaderView = self.tableView.tableHeaderView {
+                let tableHeaderViewHeight = tableHeaderView.frame.height
+                if tableViewScrllToY < tableHeaderViewHeight {
+                    tableViewScrllToY = tableHeaderViewHeight
+                }
+            }
+            
+            if addHeight == 0 {
+                tableViewScrllDistance = tableViewScrllToY - tableView.contentOffset.y
+            }
+
+//            tableViewScrllToY += tableHeaderViewHeight
+
+            
+            
+            tableView.setContentOffset(.init(x: 0, y: tableViewScrllToY), animated: true)
+            scrollView.setContentOffset(.init(x: 0, y: scrollView.contentOffset.y - tableViewScrllDistance + addHeight + extraHeight), animated: true)
 
         }
     }
